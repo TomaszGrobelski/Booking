@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import HotelType from '../types/hotel';
+import HotelType from '../../types/hotel';
 
 
 function Hotel() {

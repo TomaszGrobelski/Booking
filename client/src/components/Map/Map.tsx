@@ -3,7 +3,7 @@ import '@maptiler/sdk/dist/maptiler-sdk.css';
 import { useEffect, useRef, useState } from 'react';
 
 const Map = () => {
-  const mapKey = 'jP2AwIbX0som2A87vFji';
+  const mapKey = import.meta.env.VITE_MAP_KEY;
   const mapContainer = useRef(null);
   const map = useRef<maptilersdk.Map | null>(null);
   const warsaw = { lng: 19.5, lat: 51.7 };
@@ -12,7 +12,7 @@ const Map = () => {
 
   useEffect(() => {
     const bounds: [number, number, number, number] = [14.07, 49.0, 24.15, 54.9];
-    if (map.current) return; 
+    if (map.current) return;
 
     map.current = new maptilersdk.Map({
       container: mapContainer.current || '',
@@ -27,9 +27,7 @@ const Map = () => {
       markerElement.className = 'custom-marker';
       markerElement.innerHTML = `<div class='marker-number text-[18px] bg-mainColor rounded-3xl p-2 text-white hover:bg-orange-500'>${text}</div>`;
 
-      new maptilersdk.Marker({ element: markerElement })
-        .setLngLat([lng, lat])
-        .addTo(map.current);
+      new maptilersdk.Marker({ element: markerElement }).setLngLat([lng, lat]).addTo(map.current);
     };
 
     // Tworzenie różnych markerów
