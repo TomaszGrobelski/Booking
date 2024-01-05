@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import HotelType from '../types/hotel';
-import 'dotenv/config';
+
 
 function Hotel() {
   const [hotels, setHotels] = useState<HotelType[]>([]);
