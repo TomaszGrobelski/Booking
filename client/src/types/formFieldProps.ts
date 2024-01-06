@@ -6,6 +6,6 @@ interface FormFieldProps {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error: boolean;
+  error?: boolean;
 }
 export default FormFieldProps;

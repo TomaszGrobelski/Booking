@@ -37,13 +37,29 @@ app.get('/Hotel', async (req, res) => {
 });
 
 app.post('/register', (req, res) => {
-  User.create(req.body).then((user) => res.json(user))
-  .catch(err => {
-    if (err.code === 11000) {
-      let errorField = Object.keys(err.keyValue)[0];
-      res.status(409).json({ message: `The ${errorField} is already in use.` });
-    } else {
-      res.status(500).json({ message: 'Internal server error' });
+  User.create(req.body)
+    .then((user) => res.json(user))
+    .catch((err) => {
+      if (err.code === 11000) {
+        let errorField = Object.keys(err.keyValue)[0];
+        res.status(409).json({ message: `The ${errorField} is already in use.` });
+      } else {
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    });
+});
+
+app.post('login', (req, res) => {
+  const { email, password } = req.body;
+  User.findOne({ email, password }).then((user) => {
+    if (user) {
+      if (user.password === password) {
+        res.json({ message: 'Success' });
+      } else {
+        res.json({ message: 'Password is incorrect' });
+      }
+    }else{
+      res.json({message: "User is not existed"})
     }
   });
 });

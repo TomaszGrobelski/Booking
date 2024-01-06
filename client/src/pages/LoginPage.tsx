@@ -1,4 +1,6 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import BackToHomeButton from '../components/LoginRegister/BackToHomeButton';
 import FormField from '../components/LoginRegister/FormField';
@@ -13,9 +15,20 @@ import {
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     console.log(email, password);
+    axios
+      .post('http://localhost:3000/login', { email, password })
+      .then((result) => {
+        console.log(result);
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <>
