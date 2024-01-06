@@ -2,6 +2,9 @@ import * as maptilersdk from '@maptiler/sdk';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
 import { useEffect, useRef, useState } from 'react';
 
+import HotelProps from '../../types/hotelProps';
+import createMarker from './createMarker';
+
 const Map = () => {
   const mapKey = import.meta.env.VITE_MAP_KEY;
   const mapContainer = useRef(null);
@@ -9,6 +12,7 @@ const Map = () => {
   const warsaw = { lng: 19.5, lat: 51.7 };
   const [zoom] = useState(6.3);
   maptilersdk.config.apiKey = mapKey;
+  const [hotels, setHotels] = useState<HotelProps[]>([]);
 
   useEffect(() => {
     const bounds: [number, number, number, number] = [14.07, 49.0, 24.15, 54.9];
@@ -21,23 +25,26 @@ const Map = () => {
       zoom: zoom,
       maxBounds: bounds,
     });
+  }, [warsaw.lng, warsaw.lat, zoom, hotels]);
 
-    const createMarker = (lng, lat, text) => {
-      const markerElement = document.createElement('div');
-      markerElement.className = 'custom-marker';
-      markerElement.innerHTML = `<div class='marker-number text-[18px] bg-mainColor rounded-3xl p-2 text-white hover:bg-orange-500'>${text}</div>`;
-
-      new maptilersdk.Marker({ element: markerElement }).setLngLat([lng, lat]).addTo(map.current);
-    };
-
-    // Tworzenie różnych markerów
-    createMarker(20.23, 51.2, '453zł');
-    createMarker(20.9, 50.3, '500zł');
-    createMarker(20.3, 51.1, '350zł');
-  }, [warsaw.lng, warsaw.lat, zoom]);
+  useEffect(() => {
+    fetch('http://localhost:3000/Hotel')
+      .then((response) => response.json())
+      .then((data) => {
+        setHotels(data);
+        if (map.current) {
+          data.forEach((hotel: HotelProps) => {
+            if (hotel.lat !== undefined && hotel.lng !== undefined && hotel.roomType?.standard !== undefined) {
+              createMarker(hotel.lat, hotel.lng, hotel.roomType.standard, map);
+            }
+          });
+        }
+      })
+      .catch((error) => console.error('Error:', error));
+  }, []);
 
   return (
-    <div className="relative h-[80vh]">
+    <div className="relative h-[60vh]">
       <div ref={mapContainer} className="h-full" />
     </div>
   );

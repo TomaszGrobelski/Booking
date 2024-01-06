@@ -1,14 +1,16 @@
-import Filter from './components/Map/Filter';
-import Map from './components/Map/Map';
-import Menu from './components/Menu/Menu';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { HomePage, LoginPage, RegisterPage } from './pages/index';
 
 function App() {
   return (
-    <>
-      <Menu />
-      <Filter />
-      <Map />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
+        <Route path="/register" element={<RegisterPage />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

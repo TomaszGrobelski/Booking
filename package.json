@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@maptiler/sdk": "^1.2.1",
+    "axios": "^1.6.5",
     "body-parser": "^1.20.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
@@ -20,7 +21,8 @@
     "express": "^4.18.2",
     "mongoose": "^8.0.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",
@@ -38,6 +40,7 @@
     "postcss": "^8.4.32",
     "prettier": "^3.1.1",
     "prettier-plugin-tailwindcss": "^0.5.10",
+    "tailwind-styled-components": "^2.2.0",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"

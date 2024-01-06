@@ -11,7 +11,7 @@ const Filter = () => {
             type="text"
             id="city-search"
             name="city"
-            placeholder="Wpisz nazwę miasta"
+            placeholder="Entry City Name"
           />
         </div>
         <button className="flex gap-1 items-center border-l-[3px] border-mainColor px-2">

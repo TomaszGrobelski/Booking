@@ -2,17 +2,17 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema(
   {
-    username: {
+    userName: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
-      minlenght: 4,
+      minlength: 4,
       maxlength: 15,
       trim: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
       maxlength: 40,
     },
@@ -27,4 +27,6 @@ const userSchema = new mongoose.Schema(
   },
 );
 
-export default userSchema;
+const User = mongoose.model('user', userSchema, 'register');
+
+export default User;
