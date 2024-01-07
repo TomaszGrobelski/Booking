@@ -15,6 +15,7 @@ import {
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -27,9 +28,12 @@ const Login = () => {
         navigate('/');
       })
       .catch((err) => {
-        console.log(err);
+        if (err.response && err.response.status == 401) {
+          setErrorMessage(err.response.data.message);
+        }
       });
   };
+
   return (
     <>
       <RegisterPageStyle>
@@ -43,7 +47,10 @@ const Login = () => {
               id="email"
               placeholder="Enter email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setErrorMessage('');
+              }}
             />
             <FormField
               label="Password"
@@ -52,8 +59,12 @@ const Login = () => {
               id="password"
               placeholder="Enter password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setErrorMessage('');
+              }}
             />
+            <p className="pl-4 text-red-600 my-2">{errorMessage}</p>
             <SubmitLoginButton />
           </form>
           <RegisterNowButton />

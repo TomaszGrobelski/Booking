@@ -13,7 +13,7 @@ import {
 } from '../styles/RegisterPage/Singup.styles';
 
 const Singup = () => {
-  // Odpowiedź od API i co zrobić kiedy już nazwa użytkownika lub email istnieje ??/
+  // Odpowiedź od API i co zrobić kiedy już nazwa użytkownika lub email istnieje ??/ + JWT
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -58,7 +58,7 @@ const Singup = () => {
     validateAllFields();
     if (!userNameValidateError && !emailValidateError && !passwordValidateError) {
       setIsButtonDisabled(true);
-      setTimeout(() => setIsButtonDisabled(false), 2000);
+      setTimeout(() => setIsButtonDisabled(false), 1000);
 
       axios
         .post('http://localhost:3000/register', { userName, email, password })

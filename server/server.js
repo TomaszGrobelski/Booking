@@ -49,19 +49,19 @@ app.post('/register', (req, res) => {
     });
 });
 
-app.post('login', (req, res) => {
+app.post('/login', (req, res) => {
   const { email, password } = req.body;
-  User.findOne({ email, password }).then((user) => {
-    if (user) {
-      if (user.password === password) {
-        res.json({ message: 'Success' });
-      } else {
-        res.json({ message: 'Password is incorrect' });
+  User.findOne({ email: email })
+    .then((user) => {
+      if (!user || user.password !== password) {
+        return res.status(401).json({ message: 'Email or password is incorrect.' });
       }
-    }else{
-      res.json({message: "User is not existed"})
-    }
-  });
+      res.json({ message: 'Sukces', user: user });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ message: 'Błąd serwera.' });
+    });
 });
 
 // app.use(bodyParser.json());
