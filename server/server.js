@@ -1,10 +1,11 @@
 // import bodyParser from 'body-parser';
 // import flash from 'connect-flash';
-// import cookieParser from 'cookie-parser';
 // import path from 'path'
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import 'dotenv/config';
 import express from 'express';
+import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 
 import Hotel from './models/Hotel.js';
@@ -13,6 +14,7 @@ import User from './models/User.js';
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 
 mongoose.connect('mongodb://127.0.0.1:27017/Hotele');
 
@@ -56,6 +58,15 @@ app.post('/login', (req, res) => {
       if (!user || user.password !== password) {
         return res.status(401).json({ message: 'Email or password is incorrect.' });
       }
+
+      const token = jwt.sign({ userId: user._id }, process.env.JWT.SECRET, {
+        expiresIn: '1h',
+      });
+      res.cookie('token', token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        expires: new Date(Date.now() + 3600000),
+      });
       res.json({ message: 'Sukces', user: user });
     })
     .catch((err) => {
@@ -66,7 +77,7 @@ app.post('/login', (req, res) => {
 
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cookieParser());
+
 // app.use(flash());
 
 app.listen(3000, () => {
