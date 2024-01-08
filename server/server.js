@@ -62,7 +62,7 @@ app.post('/login', (req, res) => {
       const token = jwt.sign({ userId: user._id }, process.env.JWT.SECRET, {
         expiresIn: '1h',
       });
-      res.cookie('token', token, {
+      res.cookie('token', token, {  // OGARNĄĆ JWT żeby prawidłowo tworzyło, HTTPS ?
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         expires: new Date(Date.now() + 3600000),
