@@ -22,9 +22,8 @@ const Login = () => {
     e.preventDefault();
     console.log(email, password);
     axios
-      .post('http://localhost:3000/login', { email, password })
-      .then((result) => {
-        console.log(result);
+      .post('http://localhost:3000/login', { email, password }, {withCredentials:true})
+      .then(() => {
         navigate('/');
       })
       .catch((err) => {

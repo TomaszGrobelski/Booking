@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { useNavigate } from 'react-router-dom';
 
 import BackToHomeButton from '../components/LoginRegister/BackToHomeButton';
@@ -17,13 +18,19 @@ const Singup = () => {
   const [userName, setUserName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [userNameValidateError, setUserNameError] = useState(false);
-  const [emailValidateError, setEmailError] = useState(false);
-  const [passwordValidateError, setPasswordError] = useState(false);
+  const [userNameValidateError, setUserNameError] = useState<boolean>(false);
+  const [emailValidateError, setEmailError] = useState<boolean>(false);
+  const [passwordValidateError, setPasswordError] = useState<boolean>(false);
   const navigate = useNavigate();
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
+  const [captchaDone, setCaptchaDone] = useState<boolean>(false);
+  const captchaKey = import.meta.env.VITE_CAPTCHA_KEY;
+  const onChange = () => {
+    setCaptchaDone(true);
+  };
+  
   const validateAllFields = () => {
     let isUserNameValid = true;
     let isEmailValid = true;
@@ -56,7 +63,7 @@ const Singup = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     validateAllFields();
-    if (!userNameValidateError && !emailValidateError && !passwordValidateError) {
+    if (!userNameValidateError && !emailValidateError && !passwordValidateError && captchaDone) {
       setIsButtonDisabled(true);
       setTimeout(() => setIsButtonDisabled(false), 1000);
 
@@ -128,7 +135,8 @@ const Singup = () => {
               special character: !@#$%^&*.
             </p>
           ) : null}
-          {<p className='text-red-600'>{errorMessage}</p>}
+          {<p className="text-red-600">{errorMessage}</p>}
+          <ReCAPTCHA className='my-4' sitekey={captchaKey} onChange={onChange} />
           <SubmitRegisterButton disabled={isButtonDisabled} />
         </form>
         <BackToLoginButton />

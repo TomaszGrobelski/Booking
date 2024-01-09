@@ -13,10 +13,15 @@ import User from './models/User.js';
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  }),
+);
 app.use(cookieParser());
 
-mongoose.connect('mongodb://127.0.0.1:27017/Hotele');
+mongoose.connect(process.env.DB_LOCAL);
 
 mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err); // Usunąć do produkcji
@@ -59,12 +64,14 @@ app.post('/login', (req, res) => {
         return res.status(401).json({ message: 'Email or password is incorrect.' });
       }
 
-      const token = jwt.sign({ userId: user._id }, process.env.JWT.SECRET, {
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
         expiresIn: '1h',
       });
-      res.cookie('token', token, {  // OGARNĄĆ JWT żeby prawidłowo tworzyło, HTTPS ?
+
+      res.cookie('token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        // secure: process.env.NODE_ENV === 'production',
+        secure: false,
         expires: new Date(Date.now() + 3600000),
       });
       res.json({ message: 'Sukces', user: user });
@@ -73,6 +80,38 @@ app.post('/login', (req, res) => {
       console.log(err);
       res.status(500).json({ message: 'Błąd serwera.' });
     });
+});
+
+app.get('/check-auth',(req,res)=>{
+  try {
+    const token= req.cookies.token;
+    if(!token){
+      return res.status(401).send({isLoggedIn:false})
+    }
+  
+
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
+      if (err) {
+        return res.status(401).send({ isLoggedIn: false });
+      }
+
+      // Sprawdzenie, czy użytkownik z identyfikatorem z tokenu istnieje
+      const user = await User.findById(decoded.userId);
+      if (!user) {
+        return res.status(401).send({ isLoggedIn: false });
+      }
+
+      // Użytkownik jest zalogowany
+      return res.send({ isLoggedIn: true, user: user });
+    });
+  } catch (error) {
+    return res.status(500).send({ error: 'Internal server error' });
+  }
+})
+
+app.post('/logout', (req, res) => {
+  res.clearCookie('token'); // Usuwa ciasteczko z tokenem
+  res.send({ message: 'Logged out successfully' });
 });
 
 // app.use(bodyParser.json());

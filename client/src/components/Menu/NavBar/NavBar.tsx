@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import navList from './navList';
 
 const NavBar = () => {
@@ -5,7 +7,9 @@ const NavBar = () => {
     <nav>
       <ul className="flex gap-10 font-bold ">
         {navList.map((nav) => (
-          <li key={nav}>{nav}</li>
+          <Link key={nav.name} to={nav.link}>
+            <li>{nav.name}</li>
+          </Link>
         ))}
       </ul>
     </nav>

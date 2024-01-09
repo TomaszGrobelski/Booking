@@ -12,6 +12,10 @@
   },
   "dependencies": {
     "@maptiler/sdk": "^1.2.1",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@types/js-cookie": "^3.0.6",
+    "@types/react-google-recaptcha": "^2.1.8",
+    "@types/react-redux": "^7.1.33",
     "axios": "^1.6.5",
     "body-parser": "^1.20.2",
     "connect-flash": "^0.1.1",
@@ -19,10 +23,13 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1"
   },
   "devDependencies": {
