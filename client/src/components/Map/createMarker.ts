@@ -10,7 +10,10 @@ const createMarker = (
   markerElement.className = 'custom-marker';
   markerElement.innerHTML = `<div class=' text-[18px] bg-mainColor opacity-40 rounded-3xl p-2 text-white hover:opacity-100'>${price}</div>`;
   if (map.current) {
-    new maptilersdk.Marker({ element: markerElement }).setLngLat([lng, lat]).addTo(map.current);
+    const marker = new maptilersdk.Marker({ element: markerElement })
+      .setLngLat([lng, lat])
+      .addTo(map.current);
+    return marker;
   }
 };
 

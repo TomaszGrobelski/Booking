@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'PROXIMA';
+    src: url('./assets/fonts/Proxima\ Vara-VF.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }

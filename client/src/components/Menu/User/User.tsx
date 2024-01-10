@@ -2,12 +2,14 @@ import { Icon } from '@iconify/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import LoginRegisterButton from '../../../styles/LoginRegisterButton';
 
 const User = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -28,6 +30,7 @@ const User = () => {
       .post('http://localhost:3000/logout', {}, { withCredentials: true })
       .then(() => {
         setIsLogin(false);
+        navigate("/")
       })
       .catch((err) => {
         console.log('Logout Failed', err);
@@ -40,12 +43,14 @@ const User = () => {
         {isLogin ? (
           <>
             <Link to="/profile">
-              <button className='flex flex-col items-center'>
+              <button className="flex flex-col items-center">
                 <Icon icon="ph:user-fill" color="white" />
-                <p className='text-[14px]'>{userName}</p>
+                <p className="text-[14px]">{userName}</p>
               </button>
             </Link>
-            <button onClick={handleLogout}><Icon icon="line-md:log-out" height={30} className=' hover:text-red-500' /></button>
+            <button onClick={handleLogout}>
+              <Icon icon="line-md:log-out" height={30} className=" hover:text-red-500" />
+            </button>
           </>
         ) : (
           <>

@@ -1,6 +1,14 @@
 import { Icon } from '@iconify/react';
+import { useDispatch } from 'react-redux';
+import { setCity } from '../../features/hotels/hotelsSlice';
 
 const Filter = () => {
+  const dispatch = useDispatch()
+
+  const handleInputChange=(event:React.ChangeEvent<HTMLInputElement>)=>{
+    dispatch(setCity(event.target.value))
+  }
+
   return (
     <div className="flex justify-center my-4 ">
       <div className="flex  rounded-xl border-mainColor border-[3px]">
@@ -12,6 +20,7 @@ const Filter = () => {
             id="city-search"
             name="city"
             placeholder="Entry City Name"
+            onChange={handleInputChange}
           />
         </div>
         <button className="flex gap-1 items-center border-l-[3px] border-mainColor px-2">

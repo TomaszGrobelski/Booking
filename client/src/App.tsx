@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import AuthGuard from './components/Authentication/AuthGuard';
 import { HomePage, LoginPage, RegisterPage, UserPage } from './pages/index';
 
 function App() {
@@ -9,7 +10,14 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/register" element={<RegisterPage />}></Route>
-        <Route path="/profile" element={<UserPage />}></Route>
+        <Route
+          path="/profile"
+          element={
+            <AuthGuard>
+              <UserPage />
+            </AuthGuard>
+          }
+        ></Route>
       </Routes>
     </BrowserRouter>
   );
