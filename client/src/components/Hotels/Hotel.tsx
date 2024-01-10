@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { RootState } from '../../state/store';
 import HotelProps from '../../types/hotelProps';
@@ -38,22 +39,27 @@ function Hotel() {
       <div>
         <div className="grid grid-cols-3 gap-20 mx-6 rounded-lg  ">
           {hotels.map((hotel) => (
-            <div className="flex flex-col rounded-xl shadow-2xl cursor-pointer " key={hotel._id}>
-              <img
-                loading="lazy"
-                className=" rounded-tr-lg rounded-tl-lg shadow-lg h-[300px]"
-                src={hotel.pages?.[0]}
-                alt={hotel.name}
-              />
-              <div className='px-4 pt-1 pb-4'>
-                <p className=" mt-1 text-[22px] font-ProximaVara"> {hotel.name}</p>
-                <div className='flex items-center text-[18px]'><Icon icon="game-icons:position-marker" color="#116149" />{hotel.address?.city}</div>
-                <div className="flex">
-                  Rating: <StarRating rating={hotel.rating || 0} />
+            <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={hotel._id}>
+              <div className="flex flex-col rounded-xl shadow-2xl cursor-pointer ">
+                <img
+                  loading="lazy"
+                  className=" rounded-tr-lg rounded-tl-lg shadow-lg h-[300px]"
+                  src={hotel.pages?.[0]}
+                  alt={hotel.name}
+                />
+                <div className="px-4 pt-1 pb-4">
+                  <p className=" mt-1 text-[22px] font-ProximaVara"> {hotel.name}</p>
+                  <div className="flex items-center text-[18px]">
+                    <Icon icon="game-icons:position-marker" color="#116149" />
+                    {hotel.address?.city}
+                  </div>
+                  <div className="flex">
+                    Rating: <StarRating rating={hotel.rating || 0} />
+                  </div>
+                  <p>Price from {hotel.roomType?.standard} zł</p>
                 </div>
-                <p>Price from {hotel.roomType?.standard} zł</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

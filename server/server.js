@@ -118,7 +118,6 @@ app.post('/logout', (req, res) => {
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use(flash());
-
 app.listen(3000, () => {
   console.log('Servere is listening...');
 });

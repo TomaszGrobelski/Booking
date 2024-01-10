@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface initialHotelsStateProps {
+interface InitialHotelsStateProps {
   city: string;
 }
-const initialHotelsState: initialHotelsStateProps = {
+const initialHotelsState: InitialHotelsStateProps = {
   city: '',
 };
 

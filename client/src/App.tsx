@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import AuthGuard from './components/Authentication/AuthGuard';
-import { HomePage, LoginPage, RegisterPage, UserPage } from './pages/index';
+import { HomePage, HotelDetailsPage, LoginPage, RegisterPage, UserPage } from './pages/index';
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
             </AuthGuard>
           }
         ></Route>
+        <Route path="/hotel/:hotelName" element={<HotelDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );

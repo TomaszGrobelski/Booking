@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import BackToHomeButton from '../components/LoginRegister/BackToHomeButton';
 import FormField from '../components/LoginRegister/FormField';
 import RegisterNowButton from '../components/LoginRegister/Login/RegisterNowButton';
 import SubmitLoginButton from '../components/LoginRegister/Login/SubmitLoginButton';
+import { setData } from '../features/user/userSlice';
 import {
   HeaderForm,
   RegisterPageStyle,
@@ -17,13 +19,16 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log(email, password);
     axios
-      .post('http://localhost:3000/login', { email, password }, {withCredentials:true})
-      .then(() => {
+      .post('http://localhost:3000/login', { email, password }, { withCredentials: true })
+      .then((response) => {
+        const { userName: name, email } = response.data.user;
+        dispatch(setData({name, email}))
         navigate('/');
       })
       .catch((err) => {
