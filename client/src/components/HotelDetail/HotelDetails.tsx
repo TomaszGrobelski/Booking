@@ -7,8 +7,9 @@ interface HoteImagesProps {
   hotelDetails: HotelProps | null;
 }
 
-const HotelDescriptions: React.FC<HoteImagesProps> = ({ hotelDetails }) => {
+const HotelDetails: React.FC<HoteImagesProps> = ({ hotelDetails }) => {
     const [isFavorite, setIsFavorite] = useState<boolean>(false);
+    
   return (
     <div>
       <h2 className="font-bold text-[20px]">{hotelDetails?.name}</h2>
@@ -29,4 +30,4 @@ const HotelDescriptions: React.FC<HoteImagesProps> = ({ hotelDetails }) => {
   );
 };
 
-export default HotelDescriptions;
+export default HotelDetails;

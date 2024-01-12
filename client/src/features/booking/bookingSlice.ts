@@ -4,8 +4,8 @@ interface initialBookingStateProps {
   adults: number;
   childrens: number;
   rooms: number;
-  startDate: Date | null;
-  endDate: Date | null;
+  startDate: [] | null;
+  endDate: [] | null;
   totalPrice: number;
 }
 const initialBookingState: initialBookingStateProps = {

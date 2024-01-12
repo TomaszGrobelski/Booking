@@ -11,7 +11,7 @@ interface GuestRoomSelectorProps {
 const GuestRoomSelector = ({ setVisibleGuestSelector }: GuestRoomSelectorProps) => {
   const dispatch = useDispatch();
 
-  const [adults, setAdults] = useState<number>(0);
+  const [adults, setAdults] = useState<number>(2);
   const [childrens, setChildrens] = useState<number>(0);
   const [rooms, setRooms] = useState<number>(0);
 
@@ -20,7 +20,7 @@ const GuestRoomSelector = ({ setVisibleGuestSelector }: GuestRoomSelectorProps) 
     setVisibleGuestSelector(false);
   };
   return (
-    <div className="absolute top-9 flex flex-col gap-2 px-10 py-4 shadow-2xl border-mainColor border-x-[2px] border-b-[2px] w-[310px]">
+    <div className="absolute top-9 bg-white flex flex-col gap-2 px-10 py-4 shadow-2xl border-mainColor border-x-[2px] border-b-[2px] w-[310px]">
       <div className="flex gap-2">
         <p className="w-1/2">Adults</p>
         <Counter

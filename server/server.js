@@ -74,7 +74,7 @@ app.post('/login', (req, res) => {
         secure: false,
         expires: new Date(Date.now() + 3600000),
       });
-      res.json({ message: 'Sukces', user: user });
+      res.json({ message: 'success', user: user });
     })
     .catch((err) => {
       console.log(err);
@@ -110,7 +110,7 @@ app.get('/check-auth',(req,res)=>{
 })
 
 app.post('/logout', (req, res) => {
-  res.clearCookie('token'); // Usuwa ciasteczko z tokenem
+  res.clearCookie('token'); 
   res.send({ message: 'Logged out successfully' });
 });
 

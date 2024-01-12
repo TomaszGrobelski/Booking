@@ -23,10 +23,11 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(email, password);
     axios
       .post('http://localhost:3000/login', { email, password }, { withCredentials: true })
       .then((response) => {
+        console.log(response);
+        console.log(response.data.message);
         const { userName: name, email } = response.data.user;
         dispatch(setData({name, email}))
         navigate('/');
