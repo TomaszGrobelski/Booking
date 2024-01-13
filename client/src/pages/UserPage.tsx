@@ -6,6 +6,7 @@ import Menu from '../components/Menu/Menu';
 import ModalPasswordChange from '../components/Profil/ModalPasswordChange';
 import { RootState } from '../state/store';
 import BookedHotels from '../components/Profil/BookedHotels';
+import UserPhoto from '../components/Profil/UserPhoto';
 
 const UserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -17,13 +18,7 @@ const UserPage = () => {
       <Menu />
       <div className="mx-auto max-w-[1300px]">
         <div className="grid grid-cols-2 my-10">
-          <div className="flex justify-center items-center">
-            <img
-              className=" rounded-full w-[200px] h-[200px]"
-              src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=600"
-              alt=""
-            />
-          </div>
+          <UserPhoto />
           <div>
             <div className="flex items-center">
               <Icon icon="ph:user-fill" color="#116149" />
