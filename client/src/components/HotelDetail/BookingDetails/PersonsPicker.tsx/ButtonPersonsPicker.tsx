@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useSelector } from 'react-redux';
 
-import { RootState } from '../../../state/store';
+import { RootState } from '../../../../state/store';
 
 interface ButtonPersonsPickerProps {
   visibleGuestSelector: boolean;
@@ -13,7 +13,8 @@ const ButtonPersonsPicker = ({
 }: ButtonPersonsPickerProps) => {
   const adults = useSelector((state: RootState) => state.booking.adults);
   const childrens = useSelector((state: RootState) => state.booking.childrens);
-  const rooms = useSelector((state: RootState) => state.booking.rooms);
+  const roomStandard = useSelector((state: RootState) => state.booking.roomStandard);
+  const roomDelux = useSelector((state: RootState) => state.booking.roomDelux);
 
   return (
     <button
@@ -22,7 +23,7 @@ const ButtonPersonsPicker = ({
     >
       <Icon icon="ic:sharp-person" color="#116149" />
       <p>
-        {adults} adults - {childrens} childrens - {rooms} rooms
+        {adults} adults - {childrens} childrens - {roomStandard + roomDelux} rooms
       </p>
       <Icon icon="mingcute:down-fill" color="#116149" width={23} />
     </button>

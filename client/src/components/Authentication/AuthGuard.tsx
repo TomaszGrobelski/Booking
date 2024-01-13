@@ -1,11 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+
+import { setAuthentication } from '../../features/user/userSlice';
 
 interface AuthGuardProps {
   children: React.ReactNode;
 }
 const AuthGuard = ({ children }: AuthGuardProps) => {
+  const dispatch = useDispatch();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -24,6 +28,7 @@ const AuthGuard = ({ children }: AuthGuardProps) => {
   }
 
   if (!isAuthenticated) {
+    dispatch(setAuthentication(false))
     return <Navigate to="/" />;
   }
 

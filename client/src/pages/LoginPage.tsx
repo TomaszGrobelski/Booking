@@ -7,6 +7,7 @@ import BackToHomeButton from '../components/LoginRegister/BackToHomeButton';
 import FormField from '../components/LoginRegister/FormField';
 import RegisterNowButton from '../components/LoginRegister/Login/RegisterNowButton';
 import SubmitLoginButton from '../components/LoginRegister/Login/SubmitLoginButton';
+import { setAuthentication } from '../features/user/userSlice';
 import { setData } from '../features/user/userSlice';
 import {
   HeaderForm,
@@ -29,7 +30,8 @@ const Login = () => {
         console.log(response);
         console.log(response.data.message);
         const { userName: name, email } = response.data.user;
-        dispatch(setData({name, email}))
+        dispatch(setData({ name, email }));
+        dispatch(setAuthentication(true))
         navigate('/');
       })
       .catch((err) => {

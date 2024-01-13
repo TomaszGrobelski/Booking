@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux';
 import Menu from '../components/Menu/Menu';
 import ModalPasswordChange from '../components/Profil/ModalPasswordChange';
 import { RootState } from '../state/store';
+import BookedHotels from '../components/Profil/BookedHotels';
 
 const UserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const name = useSelector((state: RootState) => state.user.name);
   const email = useSelector((state: RootState) => state.user.email);
-  console.log(name, email);
 
   return (
     <>
@@ -37,7 +37,7 @@ const UserPage = () => {
             {isModalOpen && <ModalPasswordChange setIsModalOpen={setIsModalOpen} />}
           </div>
         </div>
-        <div>Booked</div>
+        <BookedHotels />
         <div>Favorite</div>
       </div>
     </>

@@ -1,12 +1,15 @@
 import { Icon } from '@iconify/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+import { setAuthentication } from '../../../features/user/userSlice';
 import LoginRegisterButton from '../../../styles/LoginRegisterButton';
 
 const User = () => {
+  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>('');
   const navigate = useNavigate();
@@ -30,12 +33,19 @@ const User = () => {
       .post('http://localhost:3000/logout', {}, { withCredentials: true })
       .then(() => {
         setIsLogin(false);
-        navigate("/")
+        dispatch(setAuthentication(false));
+        navigate('/');
       })
       .catch((err) => {
         console.log('Logout Failed', err);
       });
   };
+
+  useEffect(() => {
+    if (isLogin) {
+      dispatch(setAuthentication(true));
+    }
+  }, [dispatch, isLogin]);
 
   return (
     <>

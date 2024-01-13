@@ -1,5 +1,13 @@
 import mongoose from 'mongoose';
 
+const bookedHotelSchema = new mongoose.Schema({
+  name: String,
+  roomStandard: Number,
+  roomDelux: Number,
+  totalPrice: Number,
+  imgUrl: String,
+});
+
 const userSchema = new mongoose.Schema(
   {
     userName: {
@@ -21,6 +29,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
     },
+    bookedHotels: [bookedHotelSchema],
   },
   {
     timestamps: true,

@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useSelector } from 'react-redux';
 
-import { RootState } from '../../../state/store';
+import { RootState } from '../../../../state/store';
 
 interface ButtonDatePickerProps {
   setVisibleDatePicker: (value: boolean) => void;
@@ -19,7 +19,7 @@ const ButtonDatePicker = ({ setVisibleDatePicker, visibleDatePicker }: ButtonDat
     >
       <Icon icon="material-symbols:date-range" color="#116149" />
       <p>
-        {checkInDate? checkInDate:"CheckIn"} - {checkOutDate? checkOutDate: "CheckOut"}
+        {checkInDate ? checkInDate : 'CheckIn'} - {checkOutDate ? checkOutDate : 'CheckOut'}
       </p>
       <Icon className=" self-end" icon="mingcute:down-fill" color="#116149" width={23} />
     </button>

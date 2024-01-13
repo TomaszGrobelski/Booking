@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setDate } from '../../../features/booking/bookingSlice';
+import { setDate } from '../../../../features/booking/bookingSlice';
 import ButtonSubmit from '../ButtonSubmit';
 
 interface CalenderDatePickerProps {
@@ -61,11 +61,9 @@ const CalenderDatePicker = ({ setVisibleDatePicker }: CalenderDatePickerProps) =
   const isEndDate = (day: number) => day === selectedEndDate;
 
   const handleDateSubmit = () => {
-    const startDate = [selectedStartDate, currentMonth.slice(0,3), currentYear];
-    const endDate = [selectedEndDate, currentMonth.slice(0,3), currentYear];
+    const startDate = [selectedStartDate, currentMonth.slice(0, 3), currentYear];
+    const endDate = [selectedEndDate, currentMonth.slice(0, 3), currentYear];
     dispatch(setDate({ startDate, endDate }));
-
-    console.log(startDate, endDate);
     setVisibleDatePicker(false);
   };
   return (

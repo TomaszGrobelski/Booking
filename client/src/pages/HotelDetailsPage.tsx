@@ -4,15 +4,17 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import Amenities from '../components/HotelDetail/Amenities';
-import DatePicker from '../components/HotelDetail/DatePicker/DatePicker';
+import BookButton from '../components/HotelDetail/BookingDetails/BookButton';
+import DatePicker from '../components/HotelDetail/BookingDetails/DatePicker/DatePicker';
+import HotelDetails from '../components/HotelDetail/BookingDetails/HotelDetails';
+import PersonsPicker from '../components/HotelDetail/BookingDetails/PersonsPicker.tsx/PersonsPicker';
 import HoteIRoomsPhotos from '../components/HotelDetail/HoteIRoomsPhotos';
 import HotelDescription from '../components/HotelDetail/HotelDescription';
-import HotelDetails from '../components/HotelDetail/HotelDetails';
 import HotelOpinions from '../components/HotelDetail/HotelOpinions';
-import PersonsPicker from '../components/HotelDetail/PersonsPicker.tsx/PersonsPicker';
 import Menu from '../components/Menu/Menu';
 import { setHotelData } from '../features/hotelDescription/hotelDataSlice';
 import HotelProps from '../types/hotelProps';
+import TotalPrice from '../components/HotelDetail/BookingDetails/TotalPrice';
 
 const HotelDetailsPage = () => {
   const dispatch = useDispatch();
@@ -34,7 +36,7 @@ const HotelDetailsPage = () => {
   }, [currentHotelName, dispatch]);
 
   return (
-    <div className=' bg-mainColor'>
+    <div className=" bg-mainColor">
       <div className="realative z-20 max-w-[1300px] bg-white mx-auto">
         <Menu />
         <div className="flex flex-col gap-4 lg:flex-row p-4 bg-gray-100">
@@ -43,14 +45,18 @@ const HotelDetailsPage = () => {
           ) : (
             <div>Is Loading...</div>
           )}
-          <div className="relative p-4 shadow-xl lg:w-1/3 w-full rounded-lg mx-2 ">
-            <HotelDetails hotelDetails={hotelDetails} />
+          <div className="relative p-4 shadow-xl lg:w-1/3 w-full rounded-lg mx-2 flex flex-col gap-3 md:flex-row lg:flex-col md:gap-20 lg:gap-4 ">
             <div>
+              <HotelDetails hotelDetails={hotelDetails} />
               <p>Standard room: {hotelDetails?.roomType?.standard} zł</p>
               <p>Delux room: {hotelDetails?.roomType?.delux} zł</p>
             </div>
-            <DatePicker />
-            <PersonsPicker />
+            <div className="flex flex-col items-center">
+              <DatePicker />
+              <PersonsPicker />
+              <TotalPrice />
+              <BookButton />
+            </div>
           </div>
         </div>
         <HotelDescription />

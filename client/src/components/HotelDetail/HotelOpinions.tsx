@@ -10,9 +10,9 @@ const HotelOpinions = () => {
       <h3 className="my-4">
         <span className="text-[20px] italic border-mainColor border-b-2">Opinions</span>
       </h3>
-      {hotelDetails.opinion?.map((opin) => {
+      {hotelDetails.opinion?.map((opin, index) => {
         return (
-          <div className="my-4 shadow-xl rounded-xl p-2">
+          <div key={index} className="my-4 shadow-xl rounded-xl p-2">
             <div className='flex items-center gap-2'>
               <div className=" rounded-full bg-gray-400 w-6 h-6"></div>
               <span>Anonymous user</span>
