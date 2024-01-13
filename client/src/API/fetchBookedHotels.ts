@@ -9,7 +9,6 @@ const fetchBookedHotels = async (dispatch: Dispatch) => {
       withCredentials: true,
     });
     dispatch(setBookedHotels(response.data.bookedHotels));
-    console.log(response.data);
   } catch (error) {
     console.error(error);
   }

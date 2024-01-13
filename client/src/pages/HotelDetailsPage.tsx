@@ -3,18 +3,19 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import Footer from '../components/Footer/Footer';
 import Amenities from '../components/HotelDetail/Amenities';
 import BookButton from '../components/HotelDetail/BookingDetails/BookButton';
 import DatePicker from '../components/HotelDetail/BookingDetails/DatePicker/DatePicker';
 import HotelDetails from '../components/HotelDetail/BookingDetails/HotelDetails';
 import PersonsPicker from '../components/HotelDetail/BookingDetails/PersonsPicker.tsx/PersonsPicker';
+import TotalPrice from '../components/HotelDetail/BookingDetails/TotalPrice';
 import HoteIRoomsPhotos from '../components/HotelDetail/HoteIRoomsPhotos';
 import HotelDescription from '../components/HotelDetail/HotelDescription';
 import HotelOpinions from '../components/HotelDetail/HotelOpinions';
 import Menu from '../components/Menu/Menu';
 import { setHotelData } from '../features/hotelDescription/hotelDataSlice';
 import HotelProps from '../types/hotelProps';
-import TotalPrice from '../components/HotelDetail/BookingDetails/TotalPrice';
 
 const HotelDetailsPage = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,7 @@ const HotelDetailsPage = () => {
         <HotelDescription />
         <Amenities />
         <HotelOpinions />
+        <Footer />
       </div>
     </div>
   );
