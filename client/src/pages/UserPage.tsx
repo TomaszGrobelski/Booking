@@ -19,7 +19,7 @@ const UserPage = () => {
       <div className="mx-auto max-w-[1300px]">
         <div className="grid grid-cols-2 my-10">
           <UserPhoto />
-          <div>
+          <div className="mt-20 text-[20px] flex flex-col gap-4">
             <div className="flex items-center">
               <Icon icon="ph:user-fill" color="#116149" />
               Username: <p className="font-bold">{name}</p>
@@ -28,7 +28,7 @@ const UserPage = () => {
               <Icon icon="ic:round-mail" color="#116149" />
               Mail: <p className="font-bold">{email}</p>
             </div>
-            <button onClick={() => setIsModalOpen(!isModalOpen)}>Change your password</button>
+            <button className='self-start border-[2px] py-1 px-3 rounded-2xl font-bold text-mainColor border-mainColor hover:bg-mainColor hover:text-white' onClick={() => setIsModalOpen(!isModalOpen)}>Change your password</button>
             {isModalOpen && <ModalPasswordChange setIsModalOpen={setIsModalOpen} />}
           </div>
         </div>

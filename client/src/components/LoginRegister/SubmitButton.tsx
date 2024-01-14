@@ -1,8 +1,9 @@
 interface SubmitRegisterButtonProps{
-  disabled:boolean;
+  label:string;
+  disabled?:boolean;
 }
 
-const SubmitRegisterButton = ({disabled}:SubmitRegisterButtonProps) => {
+const SubmitButton = ({disabled, label}:SubmitRegisterButtonProps) => {
   return (
     <div className="w-full px-4">
       <button
@@ -10,10 +11,10 @@ const SubmitRegisterButton = ({disabled}:SubmitRegisterButtonProps) => {
         type="submit"
         disabled={disabled}
       >
-        Register
+        {label}
       </button>
     </div>
   );
 };
 
-export default SubmitRegisterButton;
+export default SubmitButton;

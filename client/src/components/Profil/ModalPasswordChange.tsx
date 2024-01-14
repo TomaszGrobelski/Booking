@@ -1,34 +1,67 @@
+import axios from 'axios';
+import { useState } from 'react';
+
+import { HeaderForm } from '../../styles/RegisterPage/Singup.styles';
+import FormField from '../LoginRegister/FormField';
+import SubmitButton from '../LoginRegister/SubmitButton';
+import { ModalContainer } from './ModalPasswordChange.styles';
+import { Modal } from './ModalPasswordChange.styles';
+
 interface ModalPasswordChangeProps {
   setIsModalOpen: (value: boolean) => void;
 }
 const ModalPasswordChange = ({ setIsModalOpen }: ModalPasswordChangeProps) => {
+  const [currentPassword, setCurrentPassword] = useState<string>('');
+  const [newPassword, setNewPassword] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        'http://localhost:3000//changePassword',
+        {
+          currentPassword,
+          newPassword,
+        },
+        {
+          withCredentials: true,
+        },
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+      setMessage('Błedne hasło');
+    }
+  };
   return (
-    <div
-      onClick={() => setIsModalOpen(false)}
-      className=" z-0 fixed h-screen w-screen left-0 top-0 backdrop-blur-sm flex justify-center items-center "
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="relative z-10 w-[300px] p-4 text-[18px] h-[350px] border-[1px] border-mainColor rounded-2xl shadow-xl"
-      >
-        <h3 className=" text-center my-4">Change your Password</h3>
-        <form action="">
-          <div>
-            <label htmlFor="old-password">Old password:</label>
-            <input type="password" name="" id="old-password" />
-          </div>
-          <div>
-            <label htmlFor="old-password">Again old password:</label>
-            <input type="password" name="" id="old-password" />
-          </div>
-          <div>
-            <label htmlFor="">New password:</label>
-            <input type="password" name="" id="" />
-          </div>
-          <button type="submit">Submit</button>
+    <ModalContainer onClick={() => setIsModalOpen(false)}>
+      <Modal onClick={(e) => e.stopPropagation()}>
+        <HeaderForm>Change your Password</HeaderForm>
+        <form onSubmit={handleSubmit} action="/changePassword" method="post">
+          <FormField
+            label="Current password"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter current password"
+            value={currentPassword}
+            onChange={(e) => setCurrentPassword(e.target.value)}
+          />
+          <FormField
+            label="New password"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter new password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+          />
+          {message && message}
+          <SubmitButton label="Change Password" />
         </form>
-      </div>
-    </div>
+      </Modal>
+    </ModalContainer>
   );
 };
 

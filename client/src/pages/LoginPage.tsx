@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import BackToHomeButton from '../components/LoginRegister/BackToHomeButton';
 import FormField from '../components/LoginRegister/FormField';
 import RegisterNowButton from '../components/LoginRegister/Login/RegisterNowButton';
-import SubmitLoginButton from '../components/LoginRegister/Login/SubmitLoginButton';
+import SubmitButton from '../components/LoginRegister/SubmitButton';
 import { setAuthentication } from '../features/user/userSlice';
 import { setData } from '../features/user/userSlice';
 import {
@@ -31,7 +31,7 @@ const Login = () => {
         console.log(response.data.message);
         const { userName: name, email } = response.data.user;
         dispatch(setData({ name, email }));
-        dispatch(setAuthentication(true))
+        dispatch(setAuthentication(true));
         navigate('/');
       })
       .catch((err) => {
@@ -72,7 +72,7 @@ const Login = () => {
               }}
             />
             <p className="pl-4 text-red-600 my-2">{errorMessage}</p>
-            <SubmitLoginButton />
+            <SubmitButton label="Login" />
           </form>
           <RegisterNowButton />
           <BackToHomeButton />

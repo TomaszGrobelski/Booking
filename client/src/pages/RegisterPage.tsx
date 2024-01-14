@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import BackToHomeButton from '../components/LoginRegister/BackToHomeButton';
 import FormField from '../components/LoginRegister/FormField';
 import BackToLoginButton from '../components/LoginRegister/Register/BackToLoginButton';
-import SubmitRegisterButton from '../components/LoginRegister/Register/SubmitRegisterButton';
+import SubmitButton from '../components/LoginRegister/SubmitButton';
 import {
   HeaderForm,
   RegisterPageStyle,
@@ -30,7 +30,7 @@ const Singup = () => {
   const onChange = () => {
     setCaptchaDone(true);
   };
-  
+
   const validateAllFields = () => {
     let isUserNameValid = true;
     let isEmailValid = true;
@@ -136,8 +136,8 @@ const Singup = () => {
             </p>
           ) : null}
           {<p className="text-red-600">{errorMessage}</p>}
-          <ReCAPTCHA className='my-4' sitekey={captchaKey} onChange={onChange} />
-          <SubmitRegisterButton disabled={isButtonDisabled} />
+          <ReCAPTCHA className="my-4" sitekey={captchaKey} onChange={onChange} />
+          <SubmitButton disabled={isButtonDisabled} label="Register" />
         </form>
         <BackToLoginButton />
         <BackToHomeButton />
