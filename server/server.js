@@ -82,13 +82,12 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.get('/check-auth',(req,res)=>{
+app.get('/check-auth', (req, res) => {
   try {
-    const token= req.cookies.token;
-    if(!token){
-      return res.status(401).send({isLoggedIn:false})
+    const token = req.cookies.token;
+    if (!token) {
+      return res.status(401).send({ isLoggedIn: false });
     }
-  
 
     jwt.verify(token, process.env.JWT_SECRET, async (err, decoded) => {
       if (err) {
@@ -107,7 +106,7 @@ app.get('/check-auth',(req,res)=>{
   } catch (error) {
     return res.status(500).send({ error: 'Internal server error' });
   }
-})
+});
 
 const authenticateToken = (req, res, next) => {
   const token = req.cookies.token;
@@ -125,7 +124,7 @@ const authenticateToken = (req, res, next) => {
 };
 
 app.post('/update-bookings', authenticateToken, async (req, res) => {
-  const { bookedHotel } = req.body; 
+  const { bookedHotel } = req.body;
   try {
     const user = await User.findById(req.userId);
     if (!user) {
@@ -155,8 +154,27 @@ app.get('/update-bookings', authenticateToken, async (req, res) => {
   }
 });
 
+app.post('/changePassword', authenticateToken, async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  try {
+    const user = await User.findById(req.userId);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    if (user.password !== currentPassword) {
+      return res.status(401).json({ message: 'Current password is incorrect' });
+    }
+
+    user.password = newPassword;
+    await user.save();
+    res.json({ message: 'Password changed successfully' });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server erros' });
+  }
+});
+
 app.post('/logout', (req, res) => {
-  res.clearCookie('token'); 
+  res.clearCookie('token');
   res.send({ message: 'Logged out successfully' });
 });
 

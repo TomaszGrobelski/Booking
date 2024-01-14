@@ -9,8 +9,8 @@ interface HotelProps {
   lat?: number | undefined;
   lng?: number;
   pages?: string[];
-  amenities?: string [];
-  description?:string;
+  amenities?: string[];
+  description?: string;
 }
 
 interface Addres {

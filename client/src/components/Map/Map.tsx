@@ -57,8 +57,8 @@ const Map = () => {
   }, [city]);
 
   return (
-    <div className="relative h-[60vh]">
-      <div ref={mapContainer} className="h-full" />
+    <div className='relative h-[60vh]'>
+      <div ref={mapContainer} className='h-full' />
     </div>
   );
 };

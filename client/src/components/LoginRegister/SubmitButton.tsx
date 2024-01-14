@@ -1,14 +1,14 @@
-interface SubmitRegisterButtonProps{
-  label:string;
-  disabled?:boolean;
+interface SubmitRegisterButtonProps {
+  label: string;
+  disabled?: boolean;
 }
 
-const SubmitButton = ({disabled, label}:SubmitRegisterButtonProps) => {
+const SubmitButton = ({ disabled, label }: SubmitRegisterButtonProps) => {
   return (
-    <div className="w-full px-4">
+    <div className='w-full px-4'>
       <button
-        className=" bg-mainColor w-full h-12 text-white font-bold text-[18px] hover:opacity-90"
-        type="submit"
+        className=' bg-mainColor w-full h-12 text-white font-bold text-[18px] hover:opacity-90'
+        type='submit'
         disabled={disabled}
       >
         {label}

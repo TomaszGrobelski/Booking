@@ -67,20 +67,20 @@ function Hotel() {
         {isLoading ? (
           <IsLoading />
         ) : (
-          <div className="grid grid-cols-3 gap-20 mx-6 rounded-lg  ">
+          <div className='grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 mx-2 sm:mx-6 rounded-lg  '>
             {hotels.map((hotel) => (
               <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={hotel._id}>
-                <div className="flex flex-col rounded-xl shadow-2xl cursor-pointer ">
+                <div className='flex flex-col rounded-xl shadow-2xl cursor-pointer '>
                   <img
-                    loading="lazy"
-                    className=" rounded-tr-lg rounded-tl-lg shadow-lg h-[300px]"
+                    loading='lazy'
+                    className=' rounded-tr-lg rounded-tl-lg shadow-lg h-[300px]'
                     src={hotel.pages?.[0]}
                     alt={hotel.name}
                   />
-                  <div className="px-4 pt-1 pb-4">
-                    <p className=" mt-1 text-[22px] font-ProximaVara"> {hotel.name}</p>
-                    <div className="flex items-center text-[18px]">
-                      <Icon icon="game-icons:position-marker" color="#116149" />
+                  <div className='px-1 md:px-4 pt-1 pb-4'>
+                    <p className=' mt-1 text-[22px] font-ProximaVara'> {hotel.name}</p>
+                    <div className='flex items-center text-[18px]'>
+                      <Icon icon='game-icons:position-marker' color='#116149' />
                       {hotel.address?.city}
                     </div>
                     <StarRating rating={hotel.rating || 0} />

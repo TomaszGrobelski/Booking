@@ -27,8 +27,6 @@ const Login = () => {
     axios
       .post('http://localhost:3000/login', { email, password }, { withCredentials: true })
       .then((response) => {
-        console.log(response);
-        console.log(response.data.message);
         const { userName: name, email } = response.data.user;
         dispatch(setData({ name, email }));
         dispatch(setAuthentication(true));
@@ -46,13 +44,13 @@ const Login = () => {
       <RegisterPageStyle>
         <RegistrationContainer>
           <HeaderForm>Login</HeaderForm>
-          <form onSubmit={handleSubmit} action="/login">
+          <form onSubmit={handleSubmit} action='/login'>
             <FormField
-              label="Email"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter email"
+              label='Email'
+              type='email'
+              name='email'
+              id='email'
+              placeholder='Enter email'
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -60,19 +58,19 @@ const Login = () => {
               }}
             />
             <FormField
-              label="Password"
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Enter password"
+              label='Password'
+              type='password'
+              name='password'
+              id='password'
+              placeholder='Enter password'
               value={password}
               onChange={(e) => {
                 setPassword(e.target.value);
                 setErrorMessage('');
               }}
             />
-            <p className="pl-4 text-red-600 my-2">{errorMessage}</p>
-            <SubmitButton label="Login" />
+            <p className='pl-4 text-red-600 my-2'>{errorMessage}</p>
+            <SubmitButton label='Login' />
           </form>
           <RegisterNowButton />
           <BackToHomeButton />

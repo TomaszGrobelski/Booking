@@ -28,8 +28,8 @@ const AuthGuard = ({ children }: AuthGuardProps) => {
   }
 
   if (!isAuthenticated) {
-    dispatch(setAuthentication(false))
-    return <Navigate to="/" />;
+    dispatch(setAuthentication(false));
+    return <Navigate to='/' />;
   }
 
   return children;

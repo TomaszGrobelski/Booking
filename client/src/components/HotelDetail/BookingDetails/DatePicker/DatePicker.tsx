@@ -7,7 +7,7 @@ const DatePicker = () => {
   const [visibleDatePicker, setVisibleDatePicker] = useState<boolean>(false);
 
   return (
-    <div className="relative flex flex-col ">
+    <div className='relative flex flex-col '>
       <ButtonDatePicker
         visibleDatePicker={visibleDatePicker}
         setVisibleDatePicker={setVisibleDatePicker}

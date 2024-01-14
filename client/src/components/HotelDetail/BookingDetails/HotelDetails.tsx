@@ -13,17 +13,17 @@ const HotelDetails: React.FC<HoteImagesProps> = ({ hotelDetails }) => {
 
   return (
     <div>
-      <h2 className="font-bold text-[20px]">{hotelDetails?.name}</h2>
+      <h2 className='font-bold text-[20px]'>{hotelDetails?.name}</h2>
       <p>
         {hotelDetails?.address?.city},{hotelDetails?.address?.street}{' '}
       </p>
       <StarRating rating={hotelDetails?.rating || 0} />
       <p>Contact: {hotelDetails?.contact}</p>
-      <button className="absolute top-4 right-4" onClick={() => setIsFavorite(!isFavorite)}>
+      <button className='absolute top-4 right-4' onClick={() => setIsFavorite(!isFavorite)}>
         {isFavorite ? (
-          <Icon icon="tdesign:heart-filled" width={30} color="#116149" />
+          <Icon icon='tdesign:heart-filled' width={30} color='#116149' />
         ) : (
-          <Icon icon="tdesign:heart" width={30} color="#116149" />
+          <Icon icon='tdesign:heart' width={30} color='#116149' />
         )}
       </button>
     </div>

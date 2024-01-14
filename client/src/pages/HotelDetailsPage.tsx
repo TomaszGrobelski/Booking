@@ -37,22 +37,22 @@ const HotelDetailsPage = () => {
   }, [currentHotelName, dispatch]);
 
   return (
-    <div className=" bg-mainColor">
-      <div className="realative z-20 max-w-[1300px] bg-white mx-auto">
+    <div className=' bg-mainColor'>
+      <div className='realative z-20 max-w-[1300px] bg-white mx-auto'>
         <Menu />
-        <div className="flex flex-col gap-4 lg:flex-row p-4 bg-gray-100">
+        <div className='flex flex-col gap-4 lg:flex-row p-4 bg-gray-100'>
           {hotelDetails ? (
             <HoteIRoomsPhotos hotelDetails={hotelDetails} />
           ) : (
             <div>Is Loading...</div>
           )}
-          <div className="relative p-4 shadow-xl lg:w-1/3 w-full rounded-lg mx-2 flex flex-col gap-3 md:flex-row lg:flex-col md:gap-20 lg:gap-4 ">
+          <div className='relative p-4 shadow-xl lg:w-1/3 w-full rounded-lg mx-2 flex flex-col gap-3 md:flex-row lg:flex-col md:gap-20 lg:gap-4 '>
             <div>
               <HotelDetails hotelDetails={hotelDetails} />
               <p>Standard room: {hotelDetails?.roomType?.standard} zł</p>
               <p>Delux room: {hotelDetails?.roomType?.delux} zł</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className='flex flex-col items-center'>
               <DatePicker />
               <PersonsPicker />
               <TotalPrice />

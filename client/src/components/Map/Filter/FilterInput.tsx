@@ -5,11 +5,11 @@ interface FilterInputProps {
 const FilterInput = ({ onChange }: FilterInputProps) => {
   return (
     <input
-      className="h-[95%] ml-2 outline-none"
-      type="text"
-      id="city-search"
-      name="city"
-      placeholder="Entry City Name"
+      className='h-[95%] ml-2 outline-none w-[300px]'
+      type='text'
+      id='city-search'
+      name='city'
+      placeholder='Enter the city for your accommodation'
       onChange={onChange}
     />
   );

@@ -13,19 +13,15 @@ const User = () => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>('');
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/check-auth', { withCredentials: true })
-      .then((response) => {
-        if (response.data.isLoggedIn) {
-          setIsLogin(true);
-          setUserName(response.data.user.userName);
-        }
-      })
-      .catch((error) => {
-        console.error('Authentication check failed', error);
-      });
+    axios.get('http://localhost:3000/check-auth', { withCredentials: true }).then((response) => {
+      if (response.data.isLoggedIn) {
+        setIsLogin(true);
+        setUserName(response.data.user.userName);
+      }
+    });
   }, []);
 
   const handleLogout = () => {
@@ -37,7 +33,7 @@ const User = () => {
         navigate('/');
       })
       .catch((err) => {
-        console.log('Logout Failed', err);
+        setErrorMessage(err);
       });
   };
 
@@ -49,26 +45,28 @@ const User = () => {
 
   return (
     <>
-      <div className="flex gap-4">
+      <div className='flex gap-4'>
         {isLogin ? (
           <>
-            <Link to="/profile">
-              <button className="flex flex-col items-center">
-                <Icon icon="ph:user-fill" color="white" />
-                <p className="text-[14px]">{userName}</p>
+            <Link to='/profile'>
+              <button className='flex flex-col items-center'>
+                <Icon icon='ph:user-fill' color='white' />
+                <p className='text-[14px]'>{userName}</p>
               </button>
             </Link>
+
             <button onClick={handleLogout}>
-              <Icon icon="line-md:log-out" height={30} className=" hover:text-red-500" />
+              <Icon icon='line-md:log-out' height={30} className=' hover:text-red-500' />
             </button>
+            <p>{errorMessage}</p>
           </>
         ) : (
           <>
-            <Link to="/login">
-              <LoginRegisterButton children="LogIn" />
+            <Link to='/login'>
+              <LoginRegisterButton children='LogIn' />
             </Link>
-            <Link to="/register">
-              <LoginRegisterButton children="Register" />
+            <Link to='/register'>
+              <LoginRegisterButton children='Register' />
             </Link>
           </>
         )}

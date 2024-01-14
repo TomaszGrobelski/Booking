@@ -3,7 +3,7 @@ import LogoImage from '../../../assets/Logo/booking-high-resolution-logo-white-t
 const Logo = () => {
   return (
     <div>
-      <img className="object-contain w-20" src={LogoImage} alt="Logo" />
+      <img className='object-contain w-20' loading='lazy' src={LogoImage} alt='Logo' />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const UserPhoto = () => {
-  const [image, setImage] = useState<string>("");
+  const [image, setImage] = useState<string>('');
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -9,18 +9,27 @@ const UserPhoto = () => {
       const imageUrl = URL.createObjectURL(file) as string;
       setImage(imageUrl);
     } else {
-      setImage("");
+      setImage('');
     }
   };
 
   return (
-    <div className="flex flex-col justify-center items-center my-20">
-      <img className="rounded-full border-[2px] bg-gray-300 border-mainColor w-[200px] h-[200px] mb-4" src={image} alt="User" />
-      <label className="w-[200px] h-[40px] border-[2px] flex justify-center items-center mb-4  border-mainColor cursor-pointer font-bold text-mainColor">
+    <div className='flex flex-col justify-center items-center my-20'>
+      <img
+        className='rounded-full border-[2px] bg-gray-300 border-mainColor w-[200px] h-[200px] mb-4'
+        src={image}
+        alt='User'
+        loading='lazy'
+      />
+      <label
+        htmlFor='fileInput'
+        className='w-[200px] h-[40px] border-[2px] flex justify-center items-center mb-4  border-mainColor cursor-pointer font-bold text-mainColor'
+      >
         <input
-          className="opacity-0 absolute w-[200px] h-[40px]  cursor-pointer"
-          type="file"
-          accept="image/*"
+          id='fileInput'
+          className='absolute opacity-0 -z-10'
+          type='file'
+          accept='image/*'
           onChange={handleImageChange}
         />
         Change your photo
@@ -29,4 +38,4 @@ const UserPhoto = () => {
   );
 };
 
-export default UserPhoto
+export default UserPhoto;

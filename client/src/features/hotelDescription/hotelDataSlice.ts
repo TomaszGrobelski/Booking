@@ -4,17 +4,17 @@ import HotelProps from '../../types/hotelProps';
 
 // Początkowy stan
 const initialState: HotelProps = {
-    _id: '',
+  _id: '',
   name: '',
   rating: 0,
   address: {
     street: '',
     city: '',
-  }, 
+  },
   contact: 0,
   roomType: {
     delux: 0,
-    standard:0
+    standard: 0,
   },
   opinion: [],
   lat: 0,
@@ -23,7 +23,6 @@ const initialState: HotelProps = {
   amenities: [],
   description: '',
 };
-
 
 const hotelSlice = createSlice({
   name: 'hotel',

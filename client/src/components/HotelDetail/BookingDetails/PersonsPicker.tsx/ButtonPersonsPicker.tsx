@@ -19,13 +19,13 @@ const ButtonPersonsPicker = ({
   return (
     <button
       onClick={() => setVisibleGuestSelector(!visibleGuestSelector)}
-      className="flex justify-between items-center border-[2px]  border-mainColor py-1 px-2 w-[310px]"
+      className='flex justify-between items-center border-[2px]  border-mainColor py-1 px-2 w-[310px]'
     >
-      <Icon icon="ic:sharp-person" color="#116149" />
+      <Icon icon='ic:sharp-person' color='#116149' />
       <p>
         {adults} adults - {childrens} childrens - {roomStandard + roomDelux} rooms
       </p>
-      <Icon icon="mingcute:down-fill" color="#116149" width={23} />
+      <Icon icon='mingcute:down-fill' color='#116149' width={23} />
     </button>
   );
 };

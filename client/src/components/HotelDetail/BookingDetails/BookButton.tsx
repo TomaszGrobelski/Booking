@@ -42,11 +42,15 @@ const BookButton = () => {
         imgUrl: currentHotel.pages?.[0] ?? 'Not Founded',
       };
       try {
-        const response = await axios.post('http://localhost:3000/update-bookings', {
-          bookedHotel: currentBookedHotel,
-        },{
-          withCredentials:true
-        });
+        const response = await axios.post(
+          'http://localhost:3000/update-bookings',
+          {
+            bookedHotel: currentBookedHotel,
+          },
+          {
+            withCredentials: true,
+          },
+        );
 
         if (response.status === 200) {
           dispatch(setBookedHotels([...userDetails.bookedHotels, currentBookedHotel]));
@@ -61,8 +65,8 @@ const BookButton = () => {
   };
 
   return (
-    <div className="flex flex-col">
-      <span className="text-red-500 font-bold text-justify">{errorMessage}</span>
+    <div className='flex flex-col'>
+      <span className='text-red-500 font-bold text-justify'>{errorMessage}</span>
       <button
         onClick={bookHandler}
         className={`rounded-full border-[2px] mt-2 border-mainColor py-2  font-bold ${

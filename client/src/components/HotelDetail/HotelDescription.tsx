@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
 
 const HotelDescription = () => {
-  const hotelDetails = useSelector((state: RootState) => state.hotelDetails); 
+  const hotelDetails = useSelector((state: RootState) => state.hotelDetails);
 
   return (
     <div className='p-4 shadow-xl mx-4 rounded-lg mt-6'>

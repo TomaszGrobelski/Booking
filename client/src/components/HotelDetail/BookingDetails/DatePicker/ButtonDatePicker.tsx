@@ -15,13 +15,13 @@ const ButtonDatePicker = ({ setVisibleDatePicker, visibleDatePicker }: ButtonDat
   return (
     <button
       onClick={() => setVisibleDatePicker(!visibleDatePicker)}
-      className="flex gap-1 items-center border-[2px] border-mainColor py-1 px-2 w-[310px] justify-between"
+      className='flex gap-1 items-center border-[2px] border-mainColor py-1 px-2 w-[310px] justify-between'
     >
-      <Icon icon="material-symbols:date-range" color="#116149" />
+      <Icon icon='material-symbols:date-range' color='#116149' />
       <p>
         {checkInDate ? checkInDate : 'CheckIn'} - {checkOutDate ? checkOutDate : 'CheckOut'}
       </p>
-      <Icon className=" self-end" icon="mingcute:down-fill" color="#116149" width={23} />
+      <Icon className=' self-end' icon='mingcute:down-fill' color='#116149' width={23} />
     </button>
   );
 };

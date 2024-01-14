@@ -7,18 +7,18 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/register" element={<RegisterPage />}></Route>
+        <Route path='/' element={<HomePage />}></Route>
+        <Route path='/login' element={<LoginPage />}></Route>
+        <Route path='/register' element={<RegisterPage />}></Route>
         <Route
-          path="/profile"
+          path='/profile'
           element={
             <AuthGuard>
               <UserPage />
             </AuthGuard>
           }
         ></Route>
-        <Route path="/hotel/:hotelName" element={<HotelDetailsPage />} />
+        <Route path='/hotel/:hotelName' element={<HotelDetailsPage />} />
       </Routes>
     </BrowserRouter>
   );

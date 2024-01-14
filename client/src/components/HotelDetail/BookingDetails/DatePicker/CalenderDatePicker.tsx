@@ -67,16 +67,16 @@ const CalenderDatePicker = ({ setVisibleDatePicker }: CalenderDatePickerProps) =
     setVisibleDatePicker(false);
   };
   return (
-    <div className="absolute z-10 top-9 flex flex-col bg-white shadow-xl border-mainColor border-x-[2px] border-b-[2px] rounded-b-md p-4 text-[18px] w-[310px] ">
-      <p className="text-center font-bold">{`${currentMonth} ${currentYear}`}</p>
-      <div className="grid grid-cols-7 ">
+    <div className='absolute z-10 top-9 flex flex-col bg-white shadow-xl border-mainColor border-x-[2px] border-b-[2px] rounded-b-md p-4 text-[18px] w-[310px] '>
+      <p className='text-center font-bold'>{`${currentMonth} ${currentYear}`}</p>
+      <div className='grid grid-cols-7 '>
         {daysOfWeek.map((day) => (
-          <div key={day} className="text-center">
+          <div key={day} className='text-center'>
             {day}
           </div>
         ))}
         {paddedDays.map((_, index) => (
-          <div key={`pad-${index}`} className="text-center"></div>
+          <div key={`pad-${index}`} className='text-center'></div>
         ))}
         {[...Array(numberOfDays)].map((_, index) => {
           const day = index + 1;
