@@ -52,11 +52,13 @@ const HotelDetailsPage = () => {
               <p>Standard room: {hotelDetails?.roomType?.standard} zł</p>
               <p>Delux room: {hotelDetails?.roomType?.delux} zł</p>
             </div>
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-start md:items-center'>
               <DatePicker />
               <PersonsPicker />
-              <TotalPrice />
-              <BookButton />
+              <div className='px-16'>
+                <TotalPrice />
+                <BookButton />
+              </div>
             </div>
           </div>
         </div>

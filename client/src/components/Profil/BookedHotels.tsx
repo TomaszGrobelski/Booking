@@ -18,10 +18,10 @@ const BookedHotels = () => {
       <h2 className='my-4'>
         <span className='text-[20px] italic border-mainColor border-b-2'>Booked hotels:</span>
       </h2>
-      <div className=' shadow-xl grid grid-cols-4 gap-6 '>
+      <div className=' grid grid-cols-4 gap-6 '>
         {bookedHotels.map((hotel) => {
           return (
-            <div key={hotel.name} className='border-[2px] border-mainColor rounded-lg'>
+            <div key={hotel.name} className='border-[2px]  shadow-xl border-mainColor rounded-lg'>
               <img
                 src={hotel.imgUrl}
                 loading='lazy'

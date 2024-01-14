@@ -7,6 +7,8 @@ import BookedHotels from '../components/Profil/BookedHotels';
 import ModalPasswordChange from '../components/Profil/ModalPasswordChange';
 import UserPhoto from '../components/Profil/UserPhoto';
 import { RootState } from '../state/store';
+import UserFavoriteHotels from '../components/Profil/UserFavoriteHotels';
+import Footer from '../components/Footer/Footer';
 
 const UserPage = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -38,7 +40,8 @@ const UserPage = () => {
           </div>
         </div>
         <BookedHotels />
-        <div>Favorite</div>
+        <UserFavoriteHotels />
+        <Footer />
       </div>
     </>
   );

@@ -43,11 +43,14 @@ const userSlice = createSlice({
     setBookedHotels: (state, action: PayloadAction<BookedHotels[]>) => {
       state.bookedHotels = action.payload;
     },
-    setFavoriteHotels: (state, action: PayloadAction<FavoriteHotels[]>) => {
-      state.favoriteHotels = action.payload;
+    addFavoriteHotel: (state, action: PayloadAction<FavoriteHotels>) => {
+      state.favoriteHotels.push(action.payload);
+    },
+    removeFavoriteHotel: (state, action: PayloadAction<string>) => {
+      state.favoriteHotels = state.favoriteHotels.filter(hotel => hotel.name !== action.payload);
     },
   },
 });
 
-export const { setData, setAuthentication, setBookedHotels, setFavoriteHotels } = userSlice.actions;
+export const { setData, setAuthentication, setBookedHotels, addFavoriteHotel, removeFavoriteHotel } = userSlice.actions;
 export default userSlice.reducer;
