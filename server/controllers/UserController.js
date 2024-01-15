@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 import User from '../models/User.js';
@@ -7,7 +8,12 @@ class UserController {
     const { email, password } = req.body;
     try {
       const user = await User.findOne({ email: email });
-      if (!user || user.password !== password) {
+      if (!user) {
+        return res.status(401).json({ message: 'Email or password is incorrect.' });
+      }
+
+      const isValid = await bcrypt.compare(password, user.password);
+      if (!isValid) {
         return res.status(401).json({ message: 'Email or password is incorrect.' });
       }
 
@@ -29,16 +35,19 @@ class UserController {
   }
 
   static async register(req, res) {
-    User.create(req.body)
-      .then((user) => res.json(user))
-      .catch((err) => {
-        if (err.code === 11000) {
-          let errorField = Object.keys(err.keyValue)[0];
-          res.status(409).json({ message: `The ${errorField} is already in use.` });
-        } else {
-          res.status(500).json({ message: 'Internal server error' });
-        }
-      });
+    const { userName, password, email } = req.body;
+    try {
+      const hashedPassword = await bcrypt.hash(password, 13);
+      const user = await User.create({ userName, password: hashedPassword, email });
+      res.json(user);
+    } catch (err) {
+      if (err.code === 11000) {
+        let errorField = Object.keys(err.keyValue)[0];
+        res.status(409).json({ message: `The ${errorField} is already in use.` });
+      } else {
+        res.status(500).json({ message: 'Internal server error' });
+      }
+    }
   }
 
   static async getUserInfo(req, res) {
@@ -60,10 +69,14 @@ class UserController {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });
       }
-      if (user.password !== currentPassword) {
+
+      const isValid = await bcrypt.compare(currentPassword, user.password);
+      if (!isValid) {
         return res.status(401).json({ message: 'Current password is incorrect' });
       }
-      user.password = newPassword;
+
+      const hashedNewPassword = await bcrypt.hash(newPassword, 13);
+      user.password = hashedNewPassword;
       await user.save();
       res.json({ message: 'Password changed successfully' });
     } catch (error) {
