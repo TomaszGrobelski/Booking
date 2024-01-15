@@ -5,8 +5,11 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-import { setAuthentication } from '../../../features/user/userSlice';
-import LoginRegisterButton from '../../../styles/LoginRegisterButton';
+import { setAuthentication } from '../../features/user/userSlice';
+import LoginRegisterButton from '../../styles/Login&Register/LoginRegisterButton';
+import { UserName } from '../../styles/Menu/User.styles';
+import { ProfileButton } from '../../styles/Menu/User.styles';
+import { UserFlexBox } from '../../styles/Menu/User.styles';
 
 const User = () => {
   const dispatch = useDispatch();
@@ -45,18 +48,17 @@ const User = () => {
 
   return (
     <>
-      <div className='flex gap-4'>
+      <UserFlexBox>
         {isLogin ? (
           <>
             <Link to='/profile'>
-              <button className='flex flex-col items-center'>
+              <ProfileButton>
                 <Icon icon='ph:user-fill' color='white' />
-                <p className='text-[14px]'>{userName}</p>
-              </button>
+                <UserName>{userName}</UserName>
+              </ProfileButton>
             </Link>
-
             <button onClick={handleLogout}>
-              <Icon icon='line-md:log-out' height={30} className=' hover:text-red-500' />
+              <Icon icon='line-md:log-out' height={30} className=' hover:text-red-600' />
             </button>
             <p>{errorMessage}</p>
           </>
@@ -70,7 +72,7 @@ const User = () => {
             </Link>
           </>
         )}
-      </div>
+      </UserFlexBox>
     </>
   );
 };

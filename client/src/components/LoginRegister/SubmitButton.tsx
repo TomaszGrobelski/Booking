@@ -1,3 +1,6 @@
+import { ButtonContainer } from '../../styles/Login&Register/SubmitButton.styles';
+import { SubmitButtonStyle } from '../../styles/Login&Register/SubmitButton.styles';
+
 interface SubmitRegisterButtonProps {
   label: string;
   disabled?: boolean;
@@ -5,15 +8,11 @@ interface SubmitRegisterButtonProps {
 
 const SubmitButton = ({ disabled, label }: SubmitRegisterButtonProps) => {
   return (
-    <div className='w-full px-4'>
-      <button
-        className=' bg-mainColor w-full h-12 text-white font-bold text-[18px] hover:opacity-90'
-        type='submit'
-        disabled={disabled}
-      >
+    <ButtonContainer>
+      <SubmitButtonStyle type='submit' disabled={disabled}>
         {label}
-      </button>
-    </div>
+      </SubmitButtonStyle>
+    </ButtonContainer>
   );
 };
 

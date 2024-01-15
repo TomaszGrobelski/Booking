@@ -1,4 +1,6 @@
 import HotelProps from '../../types/hotelProps';
+import IsLoading from '../Hotels/IsLoading';
+import { RoomsPhotosGrid } from '../../styles/HotelDetails/HoteIRoomsPhotos.styles';
 
 interface HoteIRoomsPhotosProps {
   hotelDetails: HotelProps | null;
@@ -6,15 +8,23 @@ interface HoteIRoomsPhotosProps {
 
 const HoteIRoomsPhotos: React.FC<HoteIRoomsPhotosProps> = ({ hotelDetails }) => {
   return (
-    <div className='grid grid-cols-4 p-4 lg:grid-cols-3 lg:w-2/3 w-full gap-2 rounded-lg shadow-xl'>
+    <RoomsPhotosGrid>
       {hotelDetails ? (
         hotelDetails.pages?.map((foto: string) => {
-          return <img className='h-[200px] w-full object-cover' loading='lazy' key={foto} src={foto} alt={foto} />;
+          return (
+            <img
+              className='h-[200px] w-full object-cover'
+              loading='lazy'
+              key={foto}
+              src={foto}
+              alt={foto}
+            />
+          );
         })
       ) : (
-        <div>Is loading ...</div>
+        <IsLoading />
       )}
-    </div>
+    </RoomsPhotosGrid>
   );
 };
 

@@ -13,7 +13,7 @@ import {
   HeaderForm,
   RegisterPageStyle,
   RegistrationContainer,
-} from '../styles/RegisterPage/Singup.styles';
+} from '../styles/Login&Register/RegisterPage/Singup.styles';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');

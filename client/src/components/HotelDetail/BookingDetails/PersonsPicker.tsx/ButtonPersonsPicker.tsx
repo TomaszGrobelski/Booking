@@ -2,6 +2,7 @@ import { Icon } from '@iconify/react';
 import { useSelector } from 'react-redux';
 
 import { RootState } from '../../../../state/store';
+import { PersonsPickerButton } from '../../../../styles/HotelDetails/BookingDetails/PersonsPicker/ButtonPersonsPicker.styles';
 
 interface ButtonPersonsPickerProps {
   visibleGuestSelector: boolean;
@@ -17,16 +18,13 @@ const ButtonPersonsPicker = ({
   const roomDelux = useSelector((state: RootState) => state.booking.roomDelux);
 
   return (
-    <button
-      onClick={() => setVisibleGuestSelector(!visibleGuestSelector)}
-      className='flex justify-between items-center border-[2px]  border-mainColor py-1 px-2 w-[310px]'
-    >
+    <PersonsPickerButton onClick={() => setVisibleGuestSelector(!visibleGuestSelector)}>
       <Icon icon='ic:sharp-person' color='#116149' />
       <p>
         {adults} adults - {childrens} childrens - {roomStandard + roomDelux} rooms
       </p>
       <Icon icon='mingcute:down-fill' color='#116149' width={23} />
-    </button>
+    </PersonsPickerButton>
   );
 };
 

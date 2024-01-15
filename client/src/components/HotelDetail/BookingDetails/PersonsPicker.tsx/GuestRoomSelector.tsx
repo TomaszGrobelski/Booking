@@ -6,6 +6,8 @@ import { setPersons, setTotalPrice } from '../../../../features/booking/bookingS
 import { RootState } from '../../../../state/store';
 import ButtonSubmit from '../ButtonSubmit';
 import Counter from './Counter';
+import { CounterBox } from './CounterBox';
+import { GuestRoomFlexBox } from '../../../../styles/HotelDetails/BookingDetails/PersonsPicker/GuestRoomSelector.styles';
 
 interface GuestRoomSelectorProps {
   setVisibleGuestSelector: (value: boolean) => void;
@@ -30,41 +32,37 @@ const GuestRoomSelector = ({ setVisibleGuestSelector }: GuestRoomSelectorProps) 
   };
 
   return (
-    <div className='absolute top-9 bg-white flex flex-col gap-2 px-10 py-4 shadow-2xl border-mainColor border-x-[2px] border-b-[2px] w-[310px]'>
-      <div className='flex gap-2'>
-        <p className='w-1/2'>Adults</p>
+    <GuestRoomFlexBox>
+      <CounterBox>
         <Counter
           value={adults}
           onIncrement={() => setAdults(adults + 1)}
           onDecrement={() => setAdults(adults > 0 ? adults - 1 : 0)}
         />
-      </div>
-      <div className='flex gap-2'>
-        <p className='w-1/2'>Childrens</p>
+      </CounterBox>
+      <CounterBox>
         <Counter
           value={childrens}
           onIncrement={() => setChildrens(childrens + 1)}
           onDecrement={() => setChildrens(childrens > 0 ? childrens - 1 : 0)}
         />
-      </div>
-      <div className='flex gap-2'>
-        <p className='w-1/2'>RoomStandard</p>
+      </CounterBox>
+      <CounterBox>
         <Counter
           value={roomStandard}
           onIncrement={() => setRoomStandard(roomStandard + 1)}
           onDecrement={() => setRoomStandard(roomStandard > 0 ? roomStandard - 1 : 0)}
         />
-      </div>
-      <div className='flex gap-2'>
-        <p className='w-1/2'>RoomDelux</p>
+      </CounterBox>
+      <CounterBox>
         <Counter
           value={roomDelux}
           onIncrement={() => setRoomDelux(roomDelux + 1)}
           onDecrement={() => setRoomDelux(roomDelux > 0 ? roomDelux - 1 : 0)}
         />
-      </div>
+      </CounterBox>
       <ButtonSubmit onClick={handlePersonsSubmit} />
-    </div>
+    </GuestRoomFlexBox>
   );
 };
 

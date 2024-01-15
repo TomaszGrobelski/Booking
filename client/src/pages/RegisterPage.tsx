@@ -16,7 +16,7 @@ import {
   HeaderForm,
   RegisterPageStyle,
   RegistrationContainer,
-} from '../styles/RegisterPage/Singup.styles';
+} from '../styles/Login&Register/RegisterPage/Singup.styles';
 
 const Singup = () => {
   // Odpowiedź od API i co zrobić kiedy już nazwa użytkownika lub email istnieje ??/ + JWT
@@ -48,34 +48,6 @@ const Singup = () => {
 
     return isUserNameValid && isEmailValid && isPasswordValid;
   };
-  // const validateAllFields = () => {
-  //   let isUserNameValid = true;
-  //   let isEmailValid = true;
-
-  //   if (userName.length < 4) {
-  //     setUserNameError(true);
-  //     isUserNameValid = false;
-  //   } else {
-  //     setUserNameError(false);
-  //   }
-
-  //   if (!email.includes('@')) {
-  //     setEmailError(true);
-  //     isEmailValid = false;
-  //   } else {
-  //     setEmailError(false);
-  //   }
-
-  //   const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*.]).{6,}$/;
-  //   const isPasswordValid = passwordRegex.test(password);
-  //   if (!isPasswordValid) {
-  //     setPasswordError(true);
-  //   } else {
-  //     setPasswordError(false);
-  //   }
-
-  //   return isUserNameValid && isEmailValid && isPasswordValid;
-  // };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

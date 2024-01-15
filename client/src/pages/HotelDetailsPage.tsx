@@ -3,8 +3,9 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import MainContainer from '../components/Containers/MainContainer';
 import Footer from '../components/Footer/Footer';
-import Amenities from '../components/HotelDetail/Amenities';
+import Amenities from '../components/HotelDetail/Amenities/Amenities';
 import BookButton from '../components/HotelDetail/BookingDetails/BookButton';
 import DatePicker from '../components/HotelDetail/BookingDetails/DatePicker/DatePicker';
 import HotelDetails from '../components/HotelDetail/BookingDetails/HotelDetails';
@@ -12,7 +13,7 @@ import PersonsPicker from '../components/HotelDetail/BookingDetails/PersonsPicke
 import TotalPrice from '../components/HotelDetail/BookingDetails/TotalPrice';
 import HoteIRoomsPhotos from '../components/HotelDetail/HoteIRoomsPhotos';
 import HotelDescription from '../components/HotelDetail/HotelDescription';
-import HotelOpinions from '../components/HotelDetail/HotelOpinions';
+import HotelOpinions from '../components/HotelDetail/Opinions/HotelOpinions';
 import Menu from '../components/Menu/Menu';
 import { setHotelData } from '../features/hotelDescription/hotelDataSlice';
 import HotelProps from '../types/hotelProps';
@@ -37,8 +38,8 @@ const HotelDetailsPage = () => {
   }, [currentHotelName, dispatch]);
 
   return (
-    <div className=' bg-mainColor'>
-      <div className='realative z-20 max-w-[1300px] bg-white mx-auto'>
+    <MainContainer>
+      <div className='realative z-20 bg-white '>
         <Menu />
         <div className='flex flex-col gap-4 lg:flex-row p-4 bg-gray-100'>
           {hotelDetails ? (
@@ -67,7 +68,7 @@ const HotelDetailsPage = () => {
         <HotelOpinions />
         <Footer />
       </div>
-    </div>
+    </MainContainer>
   );
 };
 

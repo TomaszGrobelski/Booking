@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import MainContainer from '../components/Containers/MainContainer';
 import Footer from '../components/Footer/Footer';
 import Menu from '../components/Menu/Menu';
 import BookedHotels from '../components/Profil/BookedHotels';
@@ -11,6 +12,7 @@ import UserFavoriteHotels from '../components/Profil/UserFavoriteHotels';
 import UserPhoto from '../components/Profil/UserPhoto';
 import { setData } from '../features/user/userSlice';
 import { RootState } from '../state/store';
+
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -24,12 +26,11 @@ const UserPage = () => {
         withCredentials: true,
       });
       const userInfo = response.data;
-      console.log(response);
       dispatch(setData({ name: userInfo.userName, email: userInfo.email }));
     } catch (error) {
       dispatch(setData({ name: 'Could not fetch name', email: 'Could not fetch email' }));
     }
-  }, [dispatch]); 
+  }, [dispatch]);
 
   useEffect(() => {
     if (!name || !email) {
@@ -39,9 +40,9 @@ const UserPage = () => {
 
   return (
     <>
-      <Menu />
-      <div className='mx-auto max-w-[1300px]'>
-        <div className='grid grid-cols-2 my-10'>
+      <MainContainer>
+        <Menu />
+        <div className='grid grid-cols-2 py-10 bg-white'>
           <UserPhoto />
           <div className='mt-20 text-[20px] flex flex-col gap-4'>
             <div className='flex items-center'>
@@ -64,7 +65,7 @@ const UserPage = () => {
         <BookedHotels />
         <UserFavoriteHotels />
         <Footer />
-      </div>
+      </MainContainer>
     </>
   );
 };

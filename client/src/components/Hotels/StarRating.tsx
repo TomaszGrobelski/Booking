@@ -1,5 +1,8 @@
 import { Icon } from '@iconify/react';
 
+import { StarContent } from '../../styles/Hotels/StarRating.styles';
+import { StarFlexBox } from '../../styles/Hotels/StarRating.styles';
+
 interface StarRatingProps {
   rating: number;
 }
@@ -16,9 +19,9 @@ const StarRating = ({ rating }: StarRatingProps) => {
     }
   }
   return (
-    <div className='flex w-full bg-mainColor h-14 shadow-lg shadow-mainColor rounded-b-xl'>
-      <div className='flex items-center w-full justify-between px-6'>{stars}</div>
-    </div>
+    <StarFlexBox>
+      <StarContent>{stars}</StarContent>
+    </StarFlexBox>
   );
 };
 

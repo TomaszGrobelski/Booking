@@ -1,4 +1,4 @@
-import ButtonProps from '../types/buttonProps';
+import ButtonProps from '../../types/buttonProps';
 
 const LoginRegisterButton = ({ children }: ButtonProps) => {
   return (

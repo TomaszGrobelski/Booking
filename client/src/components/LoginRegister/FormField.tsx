@@ -1,4 +1,5 @@
 import FormFieldProps from '../../types/formFieldProps';
+import { FormFlexBox } from '../../styles/Login&Register/FormField.styles';
 
 const FormField = ({
   label,
@@ -14,7 +15,7 @@ const FormField = ({
     error ? 'border-red-500' : 'border-mainColor'
   } h-10 pl-2`;
   return (
-    <div className='w-full flex flex-col px-4 my-2'>
+    <FormFlexBox>
       <label htmlFor={id}>{label}</label>
       <input
         className={inputClass}
@@ -27,7 +28,7 @@ const FormField = ({
         value={value}
         onChange={onChange}
       />
-    </div>
+    </FormFlexBox>
   );
 };
 

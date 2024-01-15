@@ -7,8 +7,14 @@ import { Link } from 'react-router-dom';
 import { requestHandler } from '../../API/requestHandler';
 import { BaseRequest } from '../../API/requestHandler';
 import { RootState } from '../../state/store';
-import { HotelsContainer } from '../../styles/Hotels/Hotel.styles';
 import HotelProps from '../../types/hotelProps';
+import { OuterBox } from '../../styles/Hotels/Hotel.styles';
+import { DescriptionBox } from '../../styles/Hotels/Hotel.styles';
+import { HotelName } from '../../styles/Hotels/Hotel.styles';
+import { HotelAddress } from '../../styles/Hotels/Hotel.styles';
+import { HotelPrice } from '../../styles/Hotels/Hotel.styles';
+import { HotelGridContainer } from '../../styles/Hotels/Hotel.styles';
+import { HotelsContainer } from '../../styles/Hotels/Hotel.styles';
 import IsLoading from './IsLoading';
 import MainHeader from './MainHeader';
 import StarRating from './StarRating';
@@ -62,43 +68,34 @@ function Hotel() {
   return (
     <HotelsContainer>
       <MainHeader />
-      <div>
-        <p>{error}</p>
-        {isLoading ? (
-          <IsLoading />
-        ) : (
-          <div className='grid place-items-center grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 mx-2 sm:mx-6 rounded-lg  '>
-            {hotels.map((hotel) => (
-              <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={hotel._id}>
-                <div className='flex flex-col rounded-xl shadow-2xl cursor-pointer my-10 border-[1px] border-gray-400 max-w-[300px] '>
-                  <div className='px-1 md:px-2 pt-1 pb-4'>
-                    <div className='flex items-center gap-3'>
-                      <p className=' mt-1 text-[28px] font-ProximaVara text-nowrap italic '>
-                        {' '}
-                        {hotel.name}
-                      </p>
-                    </div>
-                    <div className='flex gap-1 items-center text-[20px] my-1'>
-                      <Icon icon='game-icons:position-marker' color='#116149' width={25} />
-                      {hotel.address?.city}
-                    </div>
-                    <span className=' border-b-[2px] border-mainColor'>
-                      Price from {hotel.roomType?.standard} zł
-                    </span>
-                  </div>
-                  <img
-                    loading='lazy'
-                    className=' rounded-tr-lg rounded-tl-lg shadow-lg h-[300px] '
-                    src={hotel.pages?.[0]}
-                    alt={hotel.name}
-                  />
-                  <StarRating rating={hotel.rating || 0} />
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-      </div>
+      <p>{error}</p>
+      {isLoading ? (
+        <IsLoading />
+      ) : (
+        <HotelGridContainer>
+          {hotels.map((hotel) => (
+            <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={hotel._id}>
+              <OuterBox>
+                <DescriptionBox>
+                  <HotelName>{hotel.name}</HotelName>
+                  <HotelAddress>
+                    <Icon icon='game-icons:position-marker' color='#116149' width={25} />
+                    {hotel.address?.city}
+                  </HotelAddress>
+                  <HotelPrice>Price from {hotel.roomType?.standard} zł</HotelPrice>
+                </DescriptionBox>
+                <img
+                  loading='lazy'
+                  className=' rounded-tr-lg rounded-tl-lg shadow-lg h-[300px] '
+                  src={hotel.pages?.[0]}
+                  alt={hotel.name}
+                />
+                <StarRating rating={hotel.rating || 0} />
+              </OuterBox>
+            </Link>
+          ))}
+        </HotelGridContainer>
+      )}
     </HotelsContainer>
   );
 }

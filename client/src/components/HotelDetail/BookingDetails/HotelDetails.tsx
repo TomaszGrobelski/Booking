@@ -8,6 +8,8 @@ import { addFavoriteHotel, removeFavoriteHotel } from '../../../features/user/us
 import { RootState } from '../../../state/store';
 import HotelProps from '../../../types/hotelProps';
 import StarRating from '../../Hotels/StarRating';
+import { FavoriteButton } from '../../../styles/HotelDetails/BookingDetails/HotelDetails.styles';
+import { HotelDetailsHeader } from '../../../styles/HotelDetails/BookingDetails/HotelDetails.styles';
 
 interface HoteImagesProps {
   hotelDetails: HotelProps | null;
@@ -45,16 +47,16 @@ const HotelDetails: React.FC<HoteImagesProps> = ({ hotelDetails }) => {
   return (
     <div>
       <StarRating rating={hotelDetails?.rating || 0} />
-      <h2 className='relative font-bold text-[20px] mt-6'>
+      <HotelDetailsHeader>
         {hotelDetails?.name}
-        <button className='absolute right-4' onClick={handleFavoriteHotels}>
+        <FavoriteButton onClick={handleFavoriteHotels}>
           {isFavorite ? (
             <Icon icon='tdesign:heart-filled' width={30} color='#116149' />
           ) : (
             <Icon icon='tdesign:heart' width={30} color='#116149' />
           )}
-        </button>
-      </h2>
+        </FavoriteButton>
+      </HotelDetailsHeader>
       <p>
         {hotelDetails?.address?.city},{hotelDetails?.address?.street}{' '}
       </p>

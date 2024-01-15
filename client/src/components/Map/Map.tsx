@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 
 import { RootState } from '../../state/store';
 import HotelProps from '../../types/hotelProps';
+import { MapContent } from '../../styles/Map/Map.styles';
+import { MapBox } from '../../styles/Map/Map.styles';
 import createMarker from './createMarker';
 
 const Map = () => {
@@ -47,8 +49,7 @@ const Map = () => {
               hotel.lng !== undefined &&
               hotel.roomType?.standard !== undefined
             ) {
-              createMarker( hotel.lng,hotel.lat , hotel.roomType.standard, map);
-
+              createMarker(hotel.lng, hotel.lat, hotel.roomType.standard, map);
             }
           });
         }
@@ -57,9 +58,9 @@ const Map = () => {
   }, [city]);
 
   return (
-    <div className='relative h-[60vh]'>
-      <div ref={mapContainer} className='h-full' />
-    </div>
+    <MapBox>
+      <MapContent ref={mapContainer} />
+    </MapBox>
   );
 };
 

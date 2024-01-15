@@ -3,6 +3,10 @@ import { useDispatch } from 'react-redux';
 
 import { setDate } from '../../../../features/booking/bookingSlice';
 import ButtonSubmit from '../ButtonSubmit';
+import { CalendarDay } from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
+import { CalendarDaysGrid } from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
+import { CurrentMonthAndYear } from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
+import { DatePickerFlexBox } from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
 
 interface CalenderDatePickerProps {
   setVisibleDatePicker: (value: boolean) => void;
@@ -67,13 +71,11 @@ const CalenderDatePicker = ({ setVisibleDatePicker }: CalenderDatePickerProps) =
     setVisibleDatePicker(false);
   };
   return (
-    <div className='absolute z-10 top-9 flex flex-col bg-white shadow-xl border-mainColor border-x-[2px] border-b-[2px] rounded-b-md p-4 text-[18px] w-[310px] '>
-      <p className='text-center font-bold'>{`${currentMonth} ${currentYear}`}</p>
-      <div className='grid grid-cols-7 '>
+    <DatePickerFlexBox>
+      <CurrentMonthAndYear>{`${currentMonth} ${currentYear}`}</CurrentMonthAndYear>
+      <CalendarDaysGrid>
         {daysOfWeek.map((day) => (
-          <div key={day} className='text-center'>
-            {day}
-          </div>
+          <CalendarDay key={day}>{day}</CalendarDay>
         ))}
         {paddedDays.map((_, index) => (
           <div key={`pad-${index}`} className='text-center'></div>
@@ -101,9 +103,9 @@ const CalenderDatePicker = ({ setVisibleDatePicker }: CalenderDatePickerProps) =
             </div>
           );
         })}
-      </div>
+      </CalendarDaysGrid>
       <ButtonSubmit onClick={handleDateSubmit} />
-    </div>
+    </DatePickerFlexBox>
   );
 };
 

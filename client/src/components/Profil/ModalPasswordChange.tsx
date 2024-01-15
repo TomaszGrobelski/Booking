@@ -1,13 +1,14 @@
 import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 
-import { HeaderForm } from '../../styles/RegisterPage/Singup.styles';
+import { HeaderForm } from '../../styles/Login&Register/RegisterPage/Singup.styles';
 import FormField from '../LoginRegister/FormField';
 import { validatePassword } from '../LoginRegister/Register/validation';
 import SubmitButton from '../LoginRegister/SubmitButton';
-import { CloseModalButton } from './ModalPasswordChange.styles';
-import { ModalContainer } from './ModalPasswordChange.styles';
-import { Modal } from './ModalPasswordChange.styles';
+import { ModalErrorMessage } from '../../styles/Profil/ModalPasswordChange.styles';
+import { CloseModalButton } from '../../styles/Profil/ModalPasswordChange.styles';
+import { ModalContainer } from '../../styles/Profil/ModalPasswordChange.styles';
+import { Modal } from '../../styles/Profil/ModalPasswordChange.styles';
 
 interface ModalPasswordChangeProps {
   setIsModalOpen: (value: boolean) => void;
@@ -83,7 +84,7 @@ const ModalPasswordChange = ({ setIsModalOpen }: ModalPasswordChangeProps) => {
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
           />
-          <p className='px-4 text-[14px]'>{message && message}</p>
+          <ModalErrorMessage>{message && message}</ModalErrorMessage>
           <SubmitButton label='Change Password' />
         </form>
       </Modal>

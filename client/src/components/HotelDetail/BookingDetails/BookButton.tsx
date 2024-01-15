@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { setDate, setPersons, setTotalPrice } from '../../../features/booking/bookingSlice';
 import { setBookedHotels } from '../../../features/user/userSlice';
 import { RootState } from '../../../state/store';
+import { BookFlexBox } from '../../../styles/HotelDetails/BookingDetails/BookButton.styles';
+import { BookErrorMessage } from '../../../styles/HotelDetails/BookingDetails/BookButton.styles';
 
 const BookButton = () => {
   const navigate = useNavigate();
@@ -85,8 +87,8 @@ const BookButton = () => {
   };
 
   return (
-    <div className='flex flex-col'>
-      <span className='text-red-500 font-bold text-justify'>{errorMessage}</span>
+    <BookFlexBox>
+      <BookErrorMessage>{errorMessage}</BookErrorMessage>
       <button
         onClick={bookHandler}
         className={`rounded-full border-[2px] mt-2 border-mainColor py-2  font-bold ${
@@ -95,7 +97,7 @@ const BookButton = () => {
       >
         {userDetails.isAuthenticated ? 'Book Now !' : 'Please login first'}
       </button>
-    </div>
+    </BookFlexBox>
   );
 };
 

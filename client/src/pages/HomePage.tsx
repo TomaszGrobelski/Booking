@@ -1,3 +1,4 @@
+import MainContainer from '../components/Containers/MainContainer';
 import Footer from '../components/Footer/Footer';
 import Hotel from '../components/Hotels/Hotel';
 import Filter from '../components/Map/Filter/Filter';
@@ -7,11 +8,13 @@ import Menu from '../components/Menu/Menu';
 const Home = () => {
   return (
     <>
-      <Menu />
-      <Map />
-      <Filter />
-      <Hotel />
-      <Footer />
+      <MainContainer>
+        <Menu />
+        <Map />
+        <Filter />
+        <Hotel />
+        <Footer />
+      </MainContainer>
     </>
   );
 };
