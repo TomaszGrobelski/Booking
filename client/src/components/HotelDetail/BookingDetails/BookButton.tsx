@@ -16,11 +16,27 @@ const BookButton = () => {
   const currentHotel = useSelector((state: RootState) => state.hotelDetails);
   const [errorMessage, setErrorMessage] = useState<string>('');
 
+  const checkInDate = useSelector((state: RootState) => state.booking.startDate)?.join('.');
+  const checkOutDate = useSelector((state: RootState) => state.booking.endDate)?.join('.');
+
   const bookHandler = async () => {
+    const dateText = `${checkInDate ? checkInDate : 'CheckIn'} - ${
+      checkOutDate ? checkOutDate : 'CheckOut'
+    }`;
     if (!userDetails.isAuthenticated) {
       setErrorMessage('You are not logged in');
       return;
     }
+
+    const isAlreadyBooked = userDetails.bookedHotels.some(
+      (hotel) => hotel.name === currentHotel.name,
+    );
+
+    if (isAlreadyBooked) {
+      setErrorMessage('That hotel is already booked.');
+      return;
+    }
+
     if (
       userDetails.isAuthenticated &&
       bookingDetails.adults > 0 &&
@@ -40,6 +56,7 @@ const BookButton = () => {
         roomDelux: bookingDetails.roomDelux,
         totalPrice: bookingDetails.totalPrice,
         imgUrl: currentHotel.pages?.[0] ?? 'Not Founded',
+        date: dateText,
       };
       try {
         const response = await axios.post(
@@ -51,15 +68,18 @@ const BookButton = () => {
             withCredentials: true,
           },
         );
-
         if (response.status === 200) {
           dispatch(setBookedHotels([...userDetails.bookedHotels, currentBookedHotel]));
           navigate('/profile');
         } else {
           setErrorMessage('Unable to book the hotel. Please try again.');
         }
-      } catch (error) {
-        setErrorMessage('An error occurred. Please try again.');
+      } catch (err) {
+        if (axios.isAxiosError(err)) {
+          setErrorMessage(err.response?.data.message || 'An error occurred. Please try again.');
+        } else {
+          setErrorMessage('An error occurred. Please try again.');
+        }
       }
     }
   };

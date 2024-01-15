@@ -12,6 +12,8 @@ const ButtonDatePicker = ({ setVisibleDatePicker, visibleDatePicker }: ButtonDat
   const checkInDate = useSelector((state: RootState) => state.booking.startDate)?.join('.');
   const checkOutDate = useSelector((state: RootState) => state.booking.endDate)?.join('.');
 
+  const dateText = `${checkInDate ? checkInDate : 'CheckIn'} - ${checkOutDate ? checkOutDate : 'CheckOut'}`;
+  
   return (
     <button
       onClick={() => setVisibleDatePicker(!visibleDatePicker)}
@@ -19,7 +21,7 @@ const ButtonDatePicker = ({ setVisibleDatePicker, visibleDatePicker }: ButtonDat
     >
       <Icon icon='material-symbols:date-range' color='#116149' />
       <p>
-        {checkInDate ? checkInDate : 'CheckIn'} - {checkOutDate ? checkOutDate : 'CheckOut'}
+        {dateText}
       </p>
       <Icon className=' self-end' icon='mingcute:down-fill' color='#116149' width={23} />
     </button>

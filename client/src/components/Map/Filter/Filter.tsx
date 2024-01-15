@@ -7,6 +7,8 @@ import FilterInput from './FilterInput';
 const Filter = () => {
   const dispatch = useDispatch();
 
+  dispatch(setCity(''))
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setCity(event.target.value));
   };

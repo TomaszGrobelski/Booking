@@ -6,6 +6,7 @@ interface BookedHotels {
   roomDelux: number;
   totalPrice: number;
   imgUrl: string;
+  date: string;
 }
 
 interface FavoriteHotels {

@@ -7,9 +7,7 @@ import Menu from '../components/Menu/Menu';
 const Home = () => {
   return (
     <>
-      <div>
-        <Menu />
-      </div>
+      <Menu />
       <Map />
       <Filter />
       <Hotel />

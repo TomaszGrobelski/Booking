@@ -10,7 +10,7 @@ const StarRating = ({ rating }: StarRatingProps) => {
 
   for (let i = 0; i < totalStars; i++) {
     if (i < rating) {
-      stars.push(<Icon icon='ic:sharp-star' color='white' width={30} />);
+      stars.push(<Icon icon='ic:sharp-star' key={i} color='white' width={30} />);
     } else {
       stars.push(<Icon icon='ph:star' key={i} width={30} />);
     }

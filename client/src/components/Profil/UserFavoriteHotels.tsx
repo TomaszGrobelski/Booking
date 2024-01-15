@@ -1,10 +1,18 @@
 import { Icon } from '@iconify/react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
+import { removeFavoriteHotel } from '../../features/user/userSlice';
 import { RootState } from '../../state/store';
 
 const UserFavoriteHotels = () => {
+  const dispatch = useDispatch();
   const favoriteHotels = useSelector((state: RootState) => state.user.favoriteHotels);
+
+  const changeFavoriteHotel = (hotelName: string) => {
+    dispatch(removeFavoriteHotel(hotelName));
+  };
   return (
     <div className='p-4'>
       <h2 className='my-4'>
@@ -14,14 +22,25 @@ const UserFavoriteHotels = () => {
         {favoriteHotels.length > 0 ? (
           favoriteHotels.map((hotel, index) => {
             return (
-              <div key={index} className='h-[250px] rounded-2xl shadow-xl '>
-                <img
-                  src={hotel.imgUrl}
-                  alt={hotel.name}
-                  loading='lazy'
-                  className='w-[250px] h-[200px]'
-                />
-                <p className='p-1 font-bold px-2 italic'>{hotel.name}</p>
+              <div className='relative'>
+                <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={index}>
+                  <div className='h-[250px] rounded-b-2xl shadow-xl border-[2px] border-gray-300 '>
+                    <img
+                      src={hotel.imgUrl}
+                      alt={hotel.name}
+                      loading='lazy'
+                      className='w-[250px] h-[200px]'
+                    />
+
+                    <p className='p-1 font-bold px-2 italic mt-1'>{hotel.name}</p>
+                  </div>
+                </Link>
+                <button
+                  className='absolute z-40 right-4 bottom-3'
+                  onClick={() => changeFavoriteHotel(hotel.name)}
+                >
+                  <Icon icon='tdesign:heart-filled' width={30} color='#116149' />
+                </button>
               </div>
             );
           })

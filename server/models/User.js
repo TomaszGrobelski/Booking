@@ -6,6 +6,7 @@ const bookedHotelSchema = new mongoose.Schema({
   roomDelux: Number,
   totalPrice: Number,
   imgUrl: String,
+  date: String,
 });
 
 const userSchema = new mongoose.Schema(

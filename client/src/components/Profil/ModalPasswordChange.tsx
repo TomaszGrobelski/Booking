@@ -5,6 +5,7 @@ import { HeaderForm } from '../../styles/RegisterPage/Singup.styles';
 import FormField from '../LoginRegister/FormField';
 import { validatePassword } from '../LoginRegister/Register/validation';
 import SubmitButton from '../LoginRegister/SubmitButton';
+import { CloseModalButton } from './ModalPasswordChange.styles';
 import { ModalContainer } from './ModalPasswordChange.styles';
 import { Modal } from './ModalPasswordChange.styles';
 
@@ -62,6 +63,7 @@ const ModalPasswordChange = ({ setIsModalOpen }: ModalPasswordChangeProps) => {
     <ModalContainer onClick={() => setIsModalOpen(false)}>
       <Modal onClick={(e) => e.stopPropagation()}>
         <HeaderForm>Change your Password</HeaderForm>
+        <CloseModalButton onClick={() => setIsModalOpen(false)}>X</CloseModalButton>
         <form onSubmit={handleSubmit} action='/changePassword' method='post'>
           <FormField
             label='Current password'

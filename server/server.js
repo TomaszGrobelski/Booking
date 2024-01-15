@@ -146,6 +146,14 @@ app.post('/update-bookings', authenticateToken, async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
+    const isAlreadyBooked = user.bookedHotels.some(
+      (hotel) => hotel.name === bookedHotel.name
+    );
+
+    if (isAlreadyBooked) {
+      return res.status(409).json({ message: 'That hotel is already booked.' });
+    }
+
     user.bookedHotels.push(bookedHotel);
     await user.save();
     res.json({ message: 'Booking updated successfully' });

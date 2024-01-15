@@ -47,8 +47,8 @@ const Map = () => {
               hotel.lng !== undefined &&
               hotel.roomType?.standard !== undefined
             ) {
-              createMarker(hotel.lat, hotel.lng, hotel.roomType.standard, map);
-              // markersRef.current.push(marker);
+              createMarker( hotel.lng,hotel.lat , hotel.roomType.standard, map);
+
             }
           });
         }

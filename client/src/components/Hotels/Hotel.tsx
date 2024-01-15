@@ -67,23 +67,28 @@ function Hotel() {
         {isLoading ? (
           <IsLoading />
         ) : (
-          <div className='grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 mx-2 sm:mx-6 rounded-lg  '>
+          <div className='grid place-items-center grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 mx-2 sm:mx-6 rounded-lg  '>
             {hotels.map((hotel) => (
               <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={hotel._id}>
-                <div className='flex flex-col rounded-xl shadow-2xl cursor-pointer my-10 border-[1px] border-gray-400 '>
-                  <div className='px-1 md:px-4 pt-1 pb-4'>
+                <div className='flex flex-col rounded-xl shadow-2xl cursor-pointer my-10 border-[1px] border-gray-400 max-w-[300px] '>
+                  <div className='px-1 md:px-2 pt-1 pb-4'>
                     <div className='flex items-center gap-3'>
-                      <p className=' mt-1 text-[22px] font-ProximaVara text-nowrap'> {hotel.name}</p>
-                      <div className='flex items-center text-[20px]'>
-                        <Icon icon='game-icons:position-marker' color='#116149' width={25} />
-                        {hotel.address?.city}
-                      </div>
+                      <p className=' mt-1 text-[28px] font-ProximaVara text-nowrap italic '>
+                        {' '}
+                        {hotel.name}
+                      </p>
                     </div>
-                    <span className=' border-b-[2px] border-mainColor'>Price from {hotel.roomType?.standard} zł</span>
+                    <div className='flex gap-1 items-center text-[20px] my-1'>
+                      <Icon icon='game-icons:position-marker' color='#116149' width={25} />
+                      {hotel.address?.city}
+                    </div>
+                    <span className=' border-b-[2px] border-mainColor'>
+                      Price from {hotel.roomType?.standard} zł
+                    </span>
                   </div>
                   <img
                     loading='lazy'
-                    className=' rounded-tr-lg rounded-tl-lg shadow-lg h-[300px]'
+                    className=' rounded-tr-lg rounded-tl-lg shadow-lg h-[300px] '
                     src={hotel.pages?.[0]}
                     alt={hotel.name}
                   />
