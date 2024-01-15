@@ -19,9 +19,9 @@ const BookedHotels = () => {
         <span className='text-[20px] italic border-mainColor border-b-2'>Booked hotels:</span>
       </h2>
       <div className=' grid grid-cols-4 gap-6 '>
-        {bookedHotels.map((hotel) => {
+        {bookedHotels.map((hotel,index) => {
           return (
-            <div key={hotel.name} className='border-[2px]  shadow-xl border-mainColor rounded-lg'>
+            <div key={index} className='border-[2px]  shadow-xl border-mainColor rounded-lg'>
               <img
                 src={hotel.imgUrl}
                 loading='lazy'

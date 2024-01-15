@@ -34,7 +34,7 @@ app.get('/Hotel', async (req, res) => {
   try {
     const hotels = await Hotel.find();
     if (!hotels || hotels.length === 0) {
-      res.status(400).json({ message: 'No hotel found' });
+      res.status(400).json({ message: 'Hotels not found' });
     } else {
       res.json(hotels);
     }
@@ -82,6 +82,34 @@ app.post('/login', (req, res) => {
     });
 });
 
+const authenticateToken = (req, res, next) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).json({ isLoggedIn: false });
+  }
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ isLoggedIn: false });
+    }
+    req.userId = decoded.userId;
+    next();
+  });
+};
+
+app.get('/user-info', authenticateToken, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId).select('userName email');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ userName: user.userName, email: user.email });
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+
 app.get('/check-auth', (req, res) => {
   try {
     const token = req.cookies.token;
@@ -108,20 +136,7 @@ app.get('/check-auth', (req, res) => {
   }
 });
 
-const authenticateToken = (req, res, next) => {
-  const token = req.cookies.token;
-  if (!token) {
-    return res.status(401).json({ isLoggedIn: false });
-  }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ isLoggedIn: false });
-    }
-    req.userId = decoded.userId;
-    next();
-  });
-};
 
 app.post('/update-bookings', authenticateToken, async (req, res) => {
   const { bookedHotel } = req.body;

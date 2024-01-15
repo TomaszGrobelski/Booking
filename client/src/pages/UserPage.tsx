@@ -1,19 +1,41 @@
 import { Icon } from '@iconify/react';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import Footer from '../components/Footer/Footer';
 import Menu from '../components/Menu/Menu';
 import BookedHotels from '../components/Profil/BookedHotels';
 import ModalPasswordChange from '../components/Profil/ModalPasswordChange';
-import UserPhoto from '../components/Profil/UserPhoto';
-import { RootState } from '../state/store';
 import UserFavoriteHotels from '../components/Profil/UserFavoriteHotels';
-import Footer from '../components/Footer/Footer';
+import UserPhoto from '../components/Profil/UserPhoto';
+import { setData } from '../features/user/userSlice';
+import { RootState } from '../state/store';
 
 const UserPage = () => {
+  const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const name = useSelector((state: RootState) => state.user.name);
   const email = useSelector((state: RootState) => state.user.email);
+
+  const fetchUserInfo = useCallback(async () => {
+    try {
+      const response = await axios.get('http://localhost:3000/user-info', {
+        withCredentials: true,
+      });
+      const userInfo = response.data;
+      console.log(response);
+      dispatch(setData({ name: userInfo.userName, email: userInfo.email }));
+    } catch (error) {
+      dispatch(setData({ name: 'Could not fetch name', email: 'Could not fetch email' }));
+    }
+  }, [dispatch]); 
+
+  useEffect(() => {
+    if (!name || !email) {
+      fetchUserInfo();
+    }
+  }, [name, email, fetchUserInfo]);
 
   return (
     <>
