@@ -2,7 +2,7 @@ import tw from 'tailwind-styled-components';
 
 export const HotelsContainer = tw.div` bg-white pb-10 flex flex-col items-center`;
 
-export const HotelGridContainer = tw.div`grid place-items-center grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-10 lg:grid-cols-3 mx-2 sm:mx-6 rounded-lg justify-items-center max-w-max`;
+export const HotelGridContainer = tw.div`grid place-items-center grid-cols-1 sm:grid-cols-2 sm:gap-20 lg:grid-cols-3 mx-2 sm:mx-6 rounded-lg justify-items-center max-w-max`;
 
 export const HotelPrice = tw.span`border-b-[2px] border-mainColor`;
 
