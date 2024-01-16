@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setDate } from '../../../../features/booking/bookingSlice';
+import {
+  CalendarDay,
+  CalendarDaysGrid,
+  CurrentMonthAndYear,
+  DatePickerFlexBox,
+} from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
 import ButtonSubmit from '../ButtonSubmit';
-import { CalendarDay } from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
-import { CalendarDaysGrid } from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
-import { CurrentMonthAndYear } from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
-import { DatePickerFlexBox } from '../../../../styles/HotelDetails/BookingDetails/DatePicker/CalenderDatePicker.styles';
 
 interface CalenderDatePickerProps {
   setVisibleDatePicker: (value: boolean) => void;

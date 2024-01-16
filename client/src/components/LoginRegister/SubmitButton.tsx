@@ -1,5 +1,7 @@
-import { ButtonContainer } from '../../styles/Login&Register/SubmitButton.styles';
-import { SubmitButtonStyle } from '../../styles/Login&Register/SubmitButton.styles';
+import {
+  ButtonContainer,
+  SubmitButtonStyle,
+} from '../../styles/Login&Register/SubmitButton.styles';
 
 interface SubmitRegisterButtonProps {
   label: string;

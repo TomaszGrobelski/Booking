@@ -1,9 +1,16 @@
+import { RefObject } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ListFlexBox } from '../../styles/Menu/NavBar.styles';
 import navList from './navList';
 
-const NavBar = () => {
+interface NavBarProps {
+  footerRef: RefObject<HTMLDivElement>;
+}
+const NavBar = ({ footerRef }: NavBarProps) => {
+  const scrollToFooter = () => {
+    footerRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <nav>
       <ListFlexBox>
@@ -12,6 +19,7 @@ const NavBar = () => {
             <li>{nav.name}</li>
           </Link>
         ))}
+        <button onClick={scrollToFooter}>Contact</button>
       </ListFlexBox>
     </nav>
   );

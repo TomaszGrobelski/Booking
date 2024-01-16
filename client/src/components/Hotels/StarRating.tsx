@@ -1,7 +1,6 @@
 import { Icon } from '@iconify/react';
 
-import { StarContent } from '../../styles/Hotels/StarRating.styles';
-import { StarFlexBox } from '../../styles/Hotels/StarRating.styles';
+import { StarContent, StarFlexBox } from '../../styles/Hotels/StarRating.styles';
 
 interface StarRatingProps {
   rating: number;

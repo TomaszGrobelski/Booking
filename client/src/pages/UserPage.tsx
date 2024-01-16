@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import axios from 'axios';
 import { useCallback, useEffect, useState } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MainContainer from '../components/Containers/MainContainer';
@@ -12,9 +13,13 @@ import UserFavoriteHotels from '../components/Profil/UserFavoriteHotels';
 import UserPhoto from '../components/Profil/UserPhoto';
 import { setData } from '../features/user/userSlice';
 import { RootState } from '../state/store';
-
+import { ChangePasswordButton } from '../styles/pages/UserPage.styles';
+import { UserLabelInformation } from '../styles/pages/UserPage.styles';
+import { UserInformationFlexBox } from '../styles/pages/UserPage.styles';
+import { UserDescriptionGrid } from '../styles/pages/UserPage.styles';
 
 const UserPage = () => {
+  const footerRef = useRef(null);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const name = useSelector((state: RootState) => state.user.name);
@@ -41,30 +46,27 @@ const UserPage = () => {
   return (
     <>
       <MainContainer>
-        <Menu />
-        <div className='grid grid-cols-2 py-10 bg-white'>
+        <Menu footerRef={footerRef} />
+        <UserDescriptionGrid>
           <UserPhoto />
-          <div className='mt-20 text-[20px] flex flex-col gap-4'>
-            <div className='flex items-center'>
+          <UserInformationFlexBox>
+            <UserLabelInformation>
               <Icon icon='ph:user-fill' color='#116149' />
               Username: <p className='font-bold'>{name}</p>
-            </div>
-            <div className='flex items-center'>
+            </UserLabelInformation>
+            <UserLabelInformation className='flex items-center'>
               <Icon icon='ic:round-mail' color='#116149' />
-              Mail: <p className='font-bold'>{email}</p>
-            </div>
-            <button
-              className='self-start border-[2px] py-1 px-3 rounded-2xl font-bold text-mainColor border-mainColor hover:bg-mainColor hover:text-white'
-              onClick={() => setIsModalOpen(!isModalOpen)}
-            >
+              Email: <p className='font-bold'>{email}</p>
+            </UserLabelInformation>
+            <ChangePasswordButton onClick={() => setIsModalOpen(!isModalOpen)}>
               Change your password
-            </button>
+            </ChangePasswordButton>
             {isModalOpen && <ModalPasswordChange setIsModalOpen={setIsModalOpen} />}
-          </div>
-        </div>
+          </UserInformationFlexBox>
+        </UserDescriptionGrid>
         <BookedHotels />
         <UserFavoriteHotels />
-        <Footer />
+        <Footer footerRef={footerRef} />
       </MainContainer>
     </>
   );

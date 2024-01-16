@@ -1,7 +1,9 @@
 import { CounterValue } from '../../../../styles/HotelDetails/BookingDetails/PersonsPicker/Counter.styles';
-import { CounterIncrementButton } from '../../../../styles/HotelDetails/BookingDetails/PersonsPicker/Counter.styles';
-import { CounterDecrementButton } from '../../../../styles/HotelDetails/BookingDetails/PersonsPicker/Counter.styles';
-import { CounterFlexBox } from '../../../../styles/HotelDetails/BookingDetails/PersonsPicker/Counter.styles';
+import {
+  CounterDecrementButton,
+  CounterFlexBox,
+  CounterIncrementButton,
+} from '../../../../styles/HotelDetails/BookingDetails/PersonsPicker/Counter.styles';
 
 interface CounterProps {
   value: number;

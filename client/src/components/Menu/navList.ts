@@ -1,6 +1,3 @@
-const navList = [
-  { name: 'Hotels', link: '/' },
-  { name: 'Suport', link: '/' },
-];
+const navList = [{ name: 'Hotels', link: '/' }];
 
 export default navList;

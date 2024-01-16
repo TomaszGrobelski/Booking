@@ -2,8 +2,7 @@ import { Icon } from '@iconify/react';
 import { useDispatch } from 'react-redux';
 
 import { setCity } from '../../../features/hotels/hotelsSlice';
-import { FilterBorderSyle } from '../../../styles/Hotels/Filter.styles';
-import { FilterFlexBox } from '../../../styles/Hotels/Filter.styles';
+import { FilterBorderSyle, FilterFlexBox } from '../../../styles/Hotels/Filter.styles';
 import FilterInput from './FilterInput';
 
 const Filter = () => {

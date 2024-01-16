@@ -1,15 +1,15 @@
 import { Icon } from '@iconify/react';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { addFavoriteHotel, removeFavoriteHotel } from '../../../features/user/userSlice';
 import { RootState } from '../../../state/store';
+import {
+  FavoriteButton,
+  HotelDetailsHeader,
+} from '../../../styles/HotelDetails/BookingDetails/HotelDetails.styles';
 import HotelProps from '../../../types/hotelProps';
 import StarRating from '../../Hotels/StarRating';
-import { FavoriteButton } from '../../../styles/HotelDetails/BookingDetails/HotelDetails.styles';
-import { HotelDetailsHeader } from '../../../styles/HotelDetails/BookingDetails/HotelDetails.styles';
 
 interface HoteImagesProps {
   hotelDetails: HotelProps | null;

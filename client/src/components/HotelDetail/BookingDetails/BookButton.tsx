@@ -1,14 +1,15 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { setDate, setPersons, setTotalPrice } from '../../../features/booking/bookingSlice';
 import { setBookedHotels } from '../../../features/user/userSlice';
 import { RootState } from '../../../state/store';
-import { BookFlexBox } from '../../../styles/HotelDetails/BookingDetails/BookButton.styles';
-import { BookErrorMessage } from '../../../styles/HotelDetails/BookingDetails/BookButton.styles';
+import {
+  BookErrorMessage,
+  BookFlexBox,
+} from '../../../styles/HotelDetails/BookingDetails/BookButton.styles';
 
 const BookButton = () => {
   const navigate = useNavigate();

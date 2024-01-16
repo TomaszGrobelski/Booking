@@ -2,13 +2,15 @@ import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 
 import { HeaderForm } from '../../styles/Login&Register/RegisterPage/Singup.styles';
+import {
+  CloseModalButton,
+  Modal,
+  ModalContainer,
+  ModalErrorMessage,
+} from '../../styles/Profil/ModalPasswordChange.styles';
 import FormField from '../LoginRegister/FormField';
 import { validatePassword } from '../LoginRegister/Register/validation';
 import SubmitButton from '../LoginRegister/SubmitButton';
-import { ModalErrorMessage } from '../../styles/Profil/ModalPasswordChange.styles';
-import { CloseModalButton } from '../../styles/Profil/ModalPasswordChange.styles';
-import { ModalContainer } from '../../styles/Profil/ModalPasswordChange.styles';
-import { Modal } from '../../styles/Profil/ModalPasswordChange.styles';
 
 interface ModalPasswordChangeProps {
   setIsModalOpen: (value: boolean) => void;

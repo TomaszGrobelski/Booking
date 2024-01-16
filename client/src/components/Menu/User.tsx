@@ -2,14 +2,11 @@ import { Icon } from '@iconify/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { setAuthentication } from '../../features/user/userSlice';
 import LoginRegisterButton from '../../styles/Login&Register/LoginRegisterButton';
-import { UserName } from '../../styles/Menu/User.styles';
-import { ProfileButton } from '../../styles/Menu/User.styles';
-import { UserFlexBox } from '../../styles/Menu/User.styles';
+import { ProfileButton, UserFlexBox, UserName } from '../../styles/Menu/User.styles';
 
 const User = () => {
   const dispatch = useDispatch();

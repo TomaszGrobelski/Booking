@@ -1,10 +1,12 @@
 import { Icon } from '@iconify/react';
 
-import { ContactFlexBox } from '../../styles/Footer/ContactFooter.styles';
-import { GitHubContent } from '../../styles/Footer/ContactFooter.styles';
-import { LinkedinContent } from '../../styles/Footer/ContactFooter.styles';
-import { EmailContent } from '../../styles/Footer/ContactFooter.styles';
-import { HeaderFooter } from '../../styles/Footer/ContactFooter.styles';
+import {
+  ContactFlexBox,
+  EmailContent,
+  GitHubContent,
+  HeaderFooter,
+  LinkedinContent,
+} from '../../styles/Footer/ContactFooter.styles';
 
 const ContactFooter = () => {
   return (
