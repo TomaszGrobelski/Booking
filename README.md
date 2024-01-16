@@ -6,7 +6,7 @@ Booking is an advanced hotel booking platform designed to give users easy access
 
 Demo is not available, to run the project please follow the installation instructions below
 
-## Funkcje
+## Functions
 
 - **Registration and Login**: Users can register and log in to access additional features
 - **Browse hotels**: All users can browse available hotels
