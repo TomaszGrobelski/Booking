@@ -8,4 +8,4 @@ export const ContainerBookedHotels = tw.div`p-4 bg-white`;
 
 export const BookedGrid = tw.div`grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 sm:place-items-center`;
 
-export const HotelBox = tw.div`border-[2px]  shadow-xl border-gray-300 rounded-b-lg max-w-[300px] my-4`;
+export const HotelBox = tw.div`border-[2px]  shadow-xl border-gray-300 rounded-b-lg max-w-[290px] h-[350px] my-4`;

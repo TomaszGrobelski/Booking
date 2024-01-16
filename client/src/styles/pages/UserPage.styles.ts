@@ -1,8 +1,8 @@
 import tw from 'tailwind-styled-components';
 
-export const UserDescriptionGrid = tw.div`grid grid-cols-2 py-10 bg-white`;
+export const UserDescriptionGrid = tw.div`grid  sm:grid-cols-2 py-10 bg-white place-items-center sm:place-items-stretch`;
 
-export const UserInformationFlexBox = tw.div`mt-20 text-[20px] flex flex-col gap-4`;
+export const UserInformationFlexBox = tw.div`sm:mt-20 text-[20px] flex flex-col gap-4`;
 
 export const UserLabelInformation = tw.div`flex items-center`;
 

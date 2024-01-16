@@ -1,6 +1,6 @@
 import tw from 'tailwind-styled-components';
 
-export const UserFavoriteContainer = tw.div`p-4 bg-white`;
+export const UserFavoriteContainer = tw.div`p-4 bg-white pt-20 pb-40`;
 
 export const FavoriteFlexBox = tw.div`flex flex-wrap gap-4`;
 

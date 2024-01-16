@@ -26,7 +26,7 @@ const BookedHotels = () => {
       <BookedGrid>
         {bookedHotels.map((hotel, index) => {
           return (
-            <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={index}>
+            <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={index} >
               <HotelBox>
                 <img
                   src={hotel.imgUrl}
