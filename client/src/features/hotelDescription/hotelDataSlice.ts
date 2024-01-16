@@ -2,7 +2,6 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import HotelProps from '../../types/hotelProps';
 
-// Początkowy stan
 const initialState: HotelProps = {
   _id: '',
   name: '',

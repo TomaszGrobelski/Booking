@@ -30,7 +30,6 @@ const Map = () => {
     });
   }, [warsaw.lng, warsaw.lat, zoom]);
 
-  // const markersRef = useRef([]);
   const city = useSelector((state: RootState) => state.hotels.city);
   useEffect(() => {
     fetch('http://localhost:3000/Hotel')

@@ -41,7 +41,7 @@ const HotelDetailsPage = () => {
     <MainContainer>
       <div className='realative z-20 bg-white '>
         <Menu />
-        <div className='flex flex-col gap-4 lg:flex-row p-4 bg-gray-100'>
+        <div className='flex flex-col gap-4 lg:flex-row sm:p-4 bg-gray-100'>
           {hotelDetails ? (
             <HoteIRoomsPhotos hotelDetails={hotelDetails} />
           ) : (

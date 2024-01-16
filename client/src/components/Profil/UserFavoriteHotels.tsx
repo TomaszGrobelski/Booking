@@ -28,8 +28,8 @@ const UserFavoriteHotels = () => {
         {favoriteHotels.length > 0 ? (
           favoriteHotels.map((hotel, index) => {
             return (
-              <div className='relative'>
-                <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} key={index}>
+              <div key={index} className='relative'>
+                <Link to={`/hotel/${encodeURIComponent(hotel.name)}`} className='relative'>
                   <HotelBox>
                     <img
                       src={hotel.imgUrl}

@@ -23,7 +23,6 @@ class UserController {
 
       res.cookie('token', token, {
         httpOnly: true,
-        // secure: process.env.NODE_ENV === 'production', (HTTPS??)
         secure: false,
         expires: new Date(Date.now() + 3600000),
       });

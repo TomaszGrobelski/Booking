@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { requestHandler } from '../../API/requestHandler';
 import { BaseRequest } from '../../API/requestHandler';
 import { RootState } from '../../state/store';
-import HotelProps from '../../types/hotelProps';
 import { OuterBox } from '../../styles/Hotels/Hotel.styles';
 import { DescriptionBox } from '../../styles/Hotels/Hotel.styles';
 import { HotelName } from '../../styles/Hotels/Hotel.styles';
@@ -15,9 +14,11 @@ import { HotelAddress } from '../../styles/Hotels/Hotel.styles';
 import { HotelPrice } from '../../styles/Hotels/Hotel.styles';
 import { HotelGridContainer } from '../../styles/Hotels/Hotel.styles';
 import { HotelsContainer } from '../../styles/Hotels/Hotel.styles';
+import HotelProps from '../../types/hotelProps';
 import IsLoading from './IsLoading';
 import MainHeader from './MainHeader';
 import StarRating from './StarRating';
+import Filter from './Filter/Filter';
 
 type HotelData = Array<HotelProps>;
 function Hotel() {
@@ -69,6 +70,7 @@ function Hotel() {
     <HotelsContainer>
       <MainHeader />
       <p>{error}</p>
+      <Filter />
       {isLoading ? (
         <IsLoading />
       ) : (

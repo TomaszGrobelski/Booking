@@ -54,7 +54,7 @@ const CalenderDatePicker = ({ setVisibleDatePicker }: CalenderDatePickerProps) =
 
   const getFirstDayOfMonth = () => {
     const firstDay = new Date(currentYear, currentMonthIndex, 1).getDay();
-    return firstDay === 0 ? 6 : firstDay - 1; // Przesunięcie, aby poniedziałek był pierwszym dniem
+    return firstDay === 0 ? 6 : firstDay - 1;
   };
 
   const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
