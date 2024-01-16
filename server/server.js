@@ -19,14 +19,12 @@ app.use(
 );
 app.use(cookieParser());
 
-console.log(process.env.DB_URL)
 mongoose.connect(process.env.DB_URL)
   .then(() => console.log('Połączono z MongoDB Atlas'))
   .catch(err => console.error('Błąd połączenia', err));
 
-
 mongoose.connection.on('error', (err) => {
-  console.error('MongoDB connection error:', err); // Usunąć do produkcji
+  console.error('MongoDB connection error:', err);
 });
 mongoose.connection.once('open', async () => {
   console.log('MongoDB connected.');
