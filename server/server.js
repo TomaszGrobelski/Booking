@@ -8,6 +8,7 @@ import bookingRoutes from './routes/bookingRoutes.js';
 import hotelRoutes from './routes/hotelRoutes.js';
 import userRoutes from './routes/userRoutes.js';
 
+
 const app = express();
 app.use(express.json());
 app.use(
@@ -18,14 +19,19 @@ app.use(
 );
 app.use(cookieParser());
 
-mongoose.connect(process.env.DB_LOCAL);
+console.log(process.env.DB_URL)
+mongoose.connect(process.env.DB_URL)
+  .then(() => console.log('Połączono z MongoDB Atlas'))
+  .catch(err => console.error('Błąd połączenia', err));
+
 
 mongoose.connection.on('error', (err) => {
   console.error('MongoDB connection error:', err); // Usunąć do produkcji
 });
-mongoose.connection.once('open', () => {
-  console.log('MongoDB connected.'); // Usunąć do produkcji
+mongoose.connection.once('open', async () => {
+  console.log('MongoDB connected.');
 });
+
 
 app.use('/', hotelRoutes);
 app.use('/', userRoutes);
