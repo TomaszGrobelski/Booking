@@ -18,7 +18,7 @@ const Menu = ({ footerRef }: MenuProps) => {
         <NavBar footerRef={footerRef} />
         <User />
       </MenuFlexBox>
-      <PhoneMenuFlexBox>
+      <PhoneMenuFlexBox >
         <Logo />
         <PhoneNavBar />
       </PhoneMenuFlexBox>

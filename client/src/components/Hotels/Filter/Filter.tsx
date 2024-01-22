@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setCity } from '../../../features/hotels/hotelsSlice';
@@ -7,10 +8,13 @@ import FilterInput from './FilterInput';
 
 const Filter = () => {
   const dispatch = useDispatch();
-
-  dispatch(setCity(''));
+  
+  useEffect(() => {
+    dispatch(setCity(''));
+  }, []);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.value);
     dispatch(setCity(event.target.value));
   };
 
