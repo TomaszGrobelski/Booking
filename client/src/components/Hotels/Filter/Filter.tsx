@@ -8,13 +8,12 @@ import FilterInput from './FilterInput';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(setCity(''));
-  }, []);
+  }, [dispatch]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.value);
     dispatch(setCity(event.target.value));
   };
 

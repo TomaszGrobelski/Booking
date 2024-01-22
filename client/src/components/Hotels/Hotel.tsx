@@ -68,7 +68,7 @@ function Hotel() {
   }, [city, allHotels]);
 
   return (
-    <HotelsContainer>
+    <HotelsContainer className=' hover:shadow-blue-500'>
       <MainHeader />
       <p>{error}</p>
       <Filter />

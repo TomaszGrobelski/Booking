@@ -12,4 +12,4 @@ export const HotelName = tw.p`mt-1 text-[28px] font-ProximaVara text-nowrap ital
 
 export const DescriptionBox = tw.div`px-1 md:px-2 pt-1 pb-4`;
 
-export const OuterBox = tw.div`flex flex-col rounded-xl shadow-2xl cursor-pointer my-10 border-[1px] border-gray-400 max-w-[300px]`;
+export const OuterBox = tw.div`flex flex-col rounded-xl shadow-2xl cursor-pointer my-10 border-[1px] border-gray-400 max-w-[300px] transition-all hover:scale-105 hover:shadow-mainColor`;
